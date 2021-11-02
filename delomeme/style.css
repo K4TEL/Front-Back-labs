@@ -1,0 +1,194 @@
+* {
+    font-family: "Courier New";
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-size: 8px;
+    font-weight: normal;
+    text-align: left;
+    font-style: normal;
+    line-height: 1em;
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+}
+
+caption {
+    font-size: 3em;
+    padding: 1em;
+}
+
+th, td {
+    text-align: center;
+    padding: 1em;
+    vertical-align: middle;
+}
+
+td {
+    font-size: 1.3em;
+}
+
+th {
+    font-size: 2.5em;
+    background-color: #104200;
+    color: #AEAD3A;
+}
+
+table #x {
+    font-size: 6em;
+}
+
+h1, h2 {
+    font-family: "Lucida Console";
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2 {
+    color: #AEAD3A;
+    font-size: 2.5em;
+    font-weight: normal;
+    font-style: oblique;
+    padding: 1em;
+}
+
+header h2 {
+    text-align: center;
+}
+
+h2 > b {
+    font-size: 1.2em;
+}
+
+h2 > b + i {
+    color: #F3B71A;
+    font-weight: bold;
+}
+
+p {
+    font-size: 2em;
+}
+
+a {
+    text-decoration: none;
+    font-weight: normal;
+    font-style: normal;
+}
+
+a, p, h2 {
+    line-height: 1em;
+}
+
+td > a {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.nav a {
+    font-size: 3em;
+}
+
+div.all {
+    display: flex;
+    margin: 1em;
+    flex-flow: row nowrap;
+}
+
+div.main {
+    flex: 1 1 50%;
+}
+
+div.pray {
+    flex: 1 1 50%;
+}
+
+.praylist p {
+    text-align: center;
+}
+
+div.content {
+    flex: 0 0 80%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+header {
+    flex: 1 0 100%;
+    padding-top: 2em;
+}
+
+div.nav {
+    flex: 0 0 20%;
+}
+
+img {
+    width: 100%;
+}
+
+#mainlink {
+    padding: 1em 0em 1em 0em;
+    display: inline-block;
+}
+
+ul {
+    line-height: 2em;
+    list-style-type: square;
+    font-size: 2.5em;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+ol {
+    font-weight: normal;
+}
+
+dt {
+    color: #FDF399;
+}
+
+dd {
+    font-weight: normal;
+    font-style: italic;
+}
+
+input[type=text] {
+    width: 90%;
+    padding: 1em;
+    margin: 1em;
+    display: inline-block;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 2em;
+  }
+
+  ::placeholder {
+      color: #F3B71A;
+  }
+  
+  input[type=submit] {
+    width: 90%;
+    background-color: #AEAD3A;
+    color: black;
+    padding: 1em;
+    margin: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 2em;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #F3B71A;
+  }

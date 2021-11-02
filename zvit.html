@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="zvit.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Звіти</title>
+    </head>
+<body>
+    <script>
+        function go(loc) {
+    document.getElementById('labframe').src = loc;
+  }
+    </script>
+
+<h1><center>ЗВІТИ  З ЛАБОРАТОРНИХ РОБІТ З ДИСЦИПЛІНИ «ОСНОВИ FRONT-END ТА BACKEND РОЗРОБОК»</center></h1>
+<div>
+<span>БРИГАДА № 16 Група ІТ-91 Луцай Катерина</span>
+
+</div>
+<div>
+    <button class="butlab" onclick="go('Lab1/1lab.html')">Лабораторна робота №1</button>
+    <button class="butlab" onclick="go('Lab2/2lab.html')">Лабораторна робота №2</button>
+    <button class="butlab" onclick="go('Lab3/3lab.html')">Лабораторна робота №3</button>
+    <button class="butlab" onclick="go('Lab4/4lab.html')">Лабораторна робота №4</button>
+    <button class="butlab">Лабораторна робота №5</button>
+    <button class="butlab">Лабораторна робота №6</button>
+    <button class="butlab">Лабораторна робота №7</button>
+    <button class="butlab">Лабораторна робота №8</button>
+    <button class="butlab">Лабораторна робота №9</button>
+</div>
+<br>
+<div>
+    <iframe id="labframe" src="about:blank" frameBorder="0" 
+    width="100%" height="3000px"></iframe>
+</div>
+</body>
+</html>

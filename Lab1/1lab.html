@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css\lab.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>1 Лабораторна робота</title>
+    </head>
+<body>
+    <script>
+        function go(loc) {
+    document.getElementById('taskframe').src = loc;
+  }
+    </script>
+
+    <section class="content">
+
+		<div class="buttons">
+            <button class="butlab" onclick="go('frames/predmet.html')">Опис предметного середовища</button>
+            <button class="butlab" onclick="go('frames/tema.html')">Тема, Мета, Місце розташування</button>
+            <button class="butlab" onclick="go('frames/structure.html')">Структура документа</button>
+            <button class="butlab" onclick="go('frames/table.html')">HTML-код ТАБЛИЦЬ</button>
+            <button class="butlab" onclick="go('frames/form.html')">HTML-код ФОРМИ</button>
+            <button class="butlab" onclick="go('frames/image.html')">HTML-код ЗОБРАЖЕННЯ</button>
+            <button class="butlab" onclick="go('frames/sumup.html')">Висновки</button>
+		</div>
+
+		<div class="outInfo">
+            <iframe id="taskframe" src="about:blank" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+100)+'px';"></iframe>
+		</div>
+
+	</section>
+</body>
+</html>

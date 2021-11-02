@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css\lab.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>2 Лабораторна робота</title>
+    </head>
+<body>
+    <script>
+        function go(loc) {
+    document.getElementById('taskframe').src = loc;
+  }
+    </script>
+
+    <section class="content">
+
+		<div class="buttons">
+            <button class="butlab" onclick="go('frames/tema.html')">Тема, Мета, Місце розташування</button>
+            <button class="butlab" onclick="go('frames/list.html')">Списки</button>
+            <button class="butlab" onclick="go('frames/ident.html')">Ідентифікатори</button>
+            <button class="butlab" onclick="go('frames/margin.html')">Відступи</button>
+            <button class="butlab" onclick="go('frames/float.html')">Плаваючі елементи</button>
+            <button class="butlab" onclick="go('frames/select.html')">Селектори</button>
+			<button class="butlab" onclick="go('frames/seltag.html')">Селектори тегу і класу</button>
+			<button class="butlab" onclick="go('frames/selother.html')">Інші селектори</button>
+			<button class="butlab" onclick="go('frames/selgroup.html')">Групування селекторів</button>
+            <button class="butlab" onclick="go('frames/sumup.html')">Висновки</button>
+		</div>
+
+		<div class="outInfo">
+            <iframe id="taskframe" src="about:blank" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"></iframe>
+		</div>
+
+	</section>
+</body>
+</html>

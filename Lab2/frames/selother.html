@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/Lab1/css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Інші селектори</title>
+    </head>
+<body>
+    <div>
+        <h2>HTML код інших селекторів: </h2>
+        <xmp>
+            <tr>
+                <td id="x" rowspan="2">X</td>
+                <td colspan="2">
+                    <p>Какого-то единого символа это божество не имеет, 
+                        так как все ближайшие планеты разобрали более могущественные небожители.</p>
+                </td>
+            </tr>
+
+            table {
+                border: none;
+                border-collapse: collapse;
+                font-size: 1em;
+            }
+            
+            th, td {
+                text-align: center;
+                padding: 1em;
+                vertical-align: middle;
+            }
+            
+            td#x {
+                font-size: 6em;
+            }
+        </xmp>
+        <h2>Результат: </h2>
+        <img src="../img/table.png" target="_blank">
+    </div>
+</body>
+</html>

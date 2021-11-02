@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/Lab1/css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Селектори</title>
+    </head>
+<body>
+    <div>
+        <h2>HTML код селекторів: </h2>
+        <xmp>
+            <div class="nav">
+                <a class="nav" id="mainlink" href="index.html"><b>Main page</b></a>
+                <br>
+                <a class="nav" href="origin.html">Origins</a>
+                <br>
+                <a class="nav" href="cult.html">Cult</a>
+                <br>
+                <a class="nav" href="symbol.html">Symbolics</a>
+            </div>
+
+            a {
+                text-decoration: none;
+                font-weight: normal;
+                font-style: normal;
+            }
+            
+            a.nav {
+                font-size: 3em;
+            }
+
+            div.nav {
+                flex: 20%;
+            }
+
+            #mainlink {
+                padding: 1em 0em 1em 0em;
+                display: inline-block;
+            }
+        </xmp>
+        <h2>Результат: </h2>
+        <img src="../img/nav.png" target="_blank">
+    </div>
+</body>
+</html>

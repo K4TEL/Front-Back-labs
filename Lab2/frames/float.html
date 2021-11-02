@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/Lab1/css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Плаваючі елементи</title>
+    </head>
+<body>
+    <div>
+        <h2>HTML код плаваючих елементів: </h2>
+        <xmp>
+            <div class="all">
+                <div class="nav">
+                    <a class="nav" id="mainlink" href="index.html"><b>Main page</b></a>
+                    <br>
+                    <a class="nav" href="origin.html">Origins</a>
+                    <br>
+                    <a class="nav" href="cult.html">Cult</a>
+                    <br>
+                    <a class="nav" href="symbol.html">Symbolics</a>
+                </div>
+            
+                <div class="main"> 
+                    <h1>Church of Delomemat</h1>
+                    <h2><b>Delomemat</b> (from Greek: <b>delo</b> - <i>Visible</i>, 
+                        <b>memat</b> - <i>Desired)</i></h2>
+                    <p>Деломем – бог всех мемоделов.</p>
+            
+                    <a href="images/delomemat.png" target="_blank">
+                        <img src="images/delomemat.png" alt="image of delomemat" target="_blank">
+                    </a>
+            
+                    <h2>Pray:</h2>
+                    <form>
+                        <input type="text" placeholder="type your wish here...">
+                        <input type="submit" value="Pray!">
+                    </form>
+                </div>
+            </div>
+
+            div.all {
+                display: flex;
+                margin: 1em;
+            }
+            
+            div.main {
+                flex: 80%;
+            }
+            
+            div.nav {
+                flex: 20%;
+            }
+        </xmp>
+        <h2>Результат: </h2>
+        <img src="../img/flex.png" target="_blank">
+    </div>
+</body>
+</html>
