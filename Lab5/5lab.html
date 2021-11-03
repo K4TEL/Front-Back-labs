@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css\lab.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>4 Лабораторна робота</title>
+    </head>
+<body>
+    <script>
+        function go(loc) {
+    document.getElementById('taskframe').src = loc;
+  }
+    </script>
+
+    <section class="content">
+
+		<div class="buttons">
+            <button class="butlab" onclick="go('frames/tema.html')">Тема, Мета, Місце розташування</button>
+            <button class="butlab" onclick="go('frames/dynamic.html')">3 Динамічні елементи</button>
+            <button class="butlab" onclick="go('frames/gallery.html')">Галерея UniteGallery</button>
+            <button class="butlab" onclick="go('frames/photo.html')">Фотогалерея</button>
+            <button class="butlab" onclick="go('frames/slider.html')">Слайдер фотографій</button>
+            <button class="butlab" onclick="go('frames/video.html')">Слайдер відеоматеріалів</button>
+			<button class="butlab" onclick="go('frames/socmed.html')">Соц мережі</button>
+			<button class="butlab" onclick="go('frames/inform.html')">Інформери</button>
+            <button class="butlab" onclick="go('frames/sumup.html')">Висновки</button>
+		</div>
+
+		<div class="outInfo">
+            <iframe id="taskframe" src="about:blank" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+200)+'px';"></iframe>
+		</div>
+
+	</section>
+</body>
+</html>

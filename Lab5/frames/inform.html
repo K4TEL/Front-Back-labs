@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/Lab4/css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>6 Календар</title>
+
+        <script>
+            function show() {
+            let date = document.querySelector("#date");
+            document.querySelector("#picked").innerHTML = "Обарно: " + date.value;
+            }
+        </script>
+    </head>
+<body>
+    <div>
+        <p id="picked">Обарно: </p> 
+        <input name="date" type="date" id="date" onchange="show()">
+        <h2>HTML код завдання: </h2>
+        <xmp>
+            <script>
+                function show() {
+                let date = document.querySelector("#date");
+                document.querySelector("#picked").innerHTML = "Обарно: " + date.value;
+                }
+            </script>
+
+        <p id="picked">Обарно: </p> 
+        <input name="date" type="date" id="date" onchange="show()">
+        </xmp>
+    </div>
+</body>
+</html>
