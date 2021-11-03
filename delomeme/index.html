@@ -9,6 +9,8 @@
             a:hover {color: #FDF399;}
             a:active {color: #FDF399;}
         </style>
+        <script src="script.js"></script>
+
         <title>Church of Delomemat</title>
     </head>
 <body>
@@ -31,18 +33,28 @@
     </header>
 
     <div class="main"> 
-        <a href="images/delomemat.png" target="_blank">
-            <img src="images/delomemat.png" alt="image of delomemat" target="_blank">
+        <script>
+            function color() {
+    let img = document.getElementById('look');
+    if (img.getAttribute("src") === "images/delomemat.png") {
+        img.src = "images/bw.png";
+    } else {
+        img.src = "images/delomemat.png";
+    }
+}
+        </script>
+        <a href="JavaScript:color();">
+            <img id="look" src="images/bw.png" alt="image of delomemat" target="_blank">
         </a>
     </div>
 
     <div class="pray">
         <h2>Pray:</h2>
-        <form>
-            <input type="text" placeholder="type your wish here...">
-            <input type="submit" value="Pray!">
+        <form onsubmit="return false">
+            <input id="wish" type="text" placeholder="type your wish here...">
+            <input type="submit" value="Pray!" onclick="writeWish()">
         </form>
-        <div class="praylist">
+        <div class="praylist" id="prays">
         <p>Щоб мама жила вічно</p>
         <p>Щоб мама жила вічно</p>
         <p>Щоб мама жила вічно</p>

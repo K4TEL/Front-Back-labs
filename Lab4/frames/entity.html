@@ -3,96 +3,17 @@
     <head>
         <link rel="stylesheet" href="/Lab1/css/frame.css"> 
         <meta name = "author" content = "Луцай">
-        <title>Розмітка за допомогою таблиці</title>
+        <title>Підстановка (entity)</title>
     </head>
 <body>
     <div>
-        <h2>Завдання: </h2>
-        <img src="../img/2maket.png">
-        <h2>HTML код таблиці: </h2>
+        <h2>HTML код підстановки (entity): </h2>
         <xmp>
-            <section class="content">
-                <header class="box">
-                    <div class="search">0</div>
-                    <div>1</div>
-                </header>
-        
-                <nav class="box main">2</nav>
-                <aside class="box main box-3">3</aside>
-                <article class="box main">4</article>
-                <aside class="box main box-5">5</aside>
-        
-                <footer class="box">6</footer>
-            </section>
+            <div class="outInfo">
+                <iframe id="taskframe" src="about:blank" frameBorder="0" 
+                onload="this.style.height=(this.contentWindow.document.body.scrollHeight+200)+'px';"></iframe>
+            </div>
         </xmp>
-        <h2>CSS код таблиці: </h2>
-        <xmp>
-            .content {
-                display: grid;
-                column-gap: 1em;
-                background-color: black;
-                height: 100%;
-                grid-template-areas: 
-                "header header  header  header"
-                "nav    side1   article side2"
-                "footer footer  footer  footer";
-            }
-            
-            .box {
-                padding: 2em;
-            }
-            
-            .main {
-                height: 300px;
-            }
-            
-            header, footer {
-                background-color: #ffc918;
-            }
-            
-            aside {
-                background-color: #f7465d;
-            }
-            
-            .box-3 {
-                grid-area: side1;
-            }
-            
-            .box-5 {
-                grid-area: side2;
-            }
-            
-            nav {
-                background-color: #46a7f7;
-                grid-area: nav;
-            }
-            
-            article {
-                background-color: white;
-                grid-area: article;
-            }
-            
-            header {
-                grid-area: header;
-            }
-            
-            footer {
-                grid-area: footer;
-            }
-            
-            header div {
-                padding: 1em;
-                display: inline-block;
-            }
-            
-            .search {
-                background-color: white;
-                border: 1px solid black;
-                width: 300px;
-            }
-        </xmp>
-        <h2>Результат: </h2>
-        <iframe id="labframe" src="../2grid.html" frameBorder="0" width="100%" height="700px"></iframe>
     </div>
     </div>
 </body>

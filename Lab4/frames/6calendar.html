@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="/Lab1/css/frame.css"> 
+        <link rel="stylesheet" href="/Lab4/css/frame.css"> 
         <meta name = "author" content = "Луцай">
-        <title>3 Завдання</title>
+        <title>6 Календар</title>
+
+        <script>
+            function show() {
+            let date = document.querySelector("#date");
+            document.querySelector("#picked").innerHTML = "Обарно: " + date.value;
+            }
+        </script>
     </head>
 <body>
     <div>
-        <h2>Завдання: </h2>
-        <img src="../img/3maket.png">
-        <h2>Результат: </h2>
-        <iframe id="labframe" src="../3flex.html" frameBorder="0" width="100%" height="1600px"></iframe>
+        <p id="picked">Обарно: </p> 
+        <input name="date" type="date" id="date" onchange="show()">
+        <h2>HTML код завдання: </h2>
+        <xmp>
+            <script>
+                function show() {
+                let date = document.querySelector("#date");
+                document.querySelector("#picked").innerHTML = "Обарно: " + date.value;
+                }
+            </script>
+
+        <p id="picked">Обарно: </p> 
+        <input name="date" type="date" id="date" onchange="show()">
+        </xmp>
     </div>
 </body>
 </html>

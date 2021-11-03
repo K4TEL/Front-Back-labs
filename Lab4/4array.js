@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="/Lab4/css/frame.css"> 
-        <meta name = "author" content = "Луцай">
-        <script src="../4array.js"></script>
-        <title>Масиви</title>
-    </head>
-<body>
-    <div>
-        <input name="len" type="number" id="len" value="5">
-        <button onclick="calculate()">Calculate</button>
-        <div>
-            <p id="list"> </p>
-            <p id="sum"> </p>
-            <p id="sorted"> </p>
-        </div>
-        <h2>HTML код завдання: </h2>
-        <xmp>
-        <input name="len" type="number" id="len" value="5">
-        <button onclick="calculate()">Calculate</button>
-        <div>
-            <p id="list"> </p>
-            <p id="sum"> </p>
-            <p id="sorted"> </p>
-        </div>
-        </xmp>
-        <h2>JS код завдання: </h2>
-        <xmp>
+
 function createArray() {
     var len = document.querySelector("input");
     return Array.from({length: len.value}, 
@@ -74,7 +46,3 @@ function quicksort(arr) {
   
     return quicksort(left).concat(pivot, quicksort(right));
   };
-        </xmp>
-    </div>
-</body>
-</html>
