@@ -136,6 +136,7 @@ img {
 #mainlink {
     padding: 1em 0em 1em 0em;
     display: inline-block;
+    font-weight: bold;
 }
 
 ul {

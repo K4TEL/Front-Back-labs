@@ -88,9 +88,11 @@ function color() {
 }
 
 var coord;
-var menu;
 
 function load() {
+    let menu = new Navigator(document.querySelector(".nav"));
+    if (location.href != "index.html") return;
+
     praysDecor();
 
     window.onsubmit = function() {return false;}
@@ -103,8 +105,6 @@ function load() {
     look.addEventListener("click", color);
 
     document.querySelector("#prays ul").addEventListener("click", light);
-
-    menu = new Navigator(document.querySelector(".nav"));
 
     document.addEventListener("click", function(event) {
         let author = event.target.dataset.author;
