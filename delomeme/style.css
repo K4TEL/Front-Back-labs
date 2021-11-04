@@ -115,7 +115,7 @@ div.pray {
 }
 
 div.content {
-    flex: 0 0 80%;
+    flex: 0 1 85%;
     display: flex;
     flex-flow: row wrap;
 }
@@ -126,7 +126,7 @@ header {
 }
 
 div.nav {
-    flex: 0 0 20%;
+    flex: 1 0 15%;
 }
 
 img {
@@ -192,3 +192,46 @@ input[type=text] {
   input[type=submit]:hover {
     background-color: #F3B71A;
   }
+
+  div.left {
+      float: left;
+      width: 35%;
+  }
+
+  div.right {
+      float: right;
+      width: 60%;
+  }
+
+.praylist span {
+      font-weight: normal;
+  }
+
+.praylist ul {
+    list-style: none;
+    text-align: center;
+}
+
+.praylist li:first-child {
+    font-weight: bold;
+}
+
+.praylist li:first-child::after {
+    content: attr(data-author);
+    font-weight: normal;
+}
+
+.praylist li:first-child::before {
+  content: "NEW ";
+  color: #FDF399;
+}
+
+.left p:first-child {
+    position: relative;
+    top: 1em;
+}
+
+a#author {
+    padding: 1em 0em 1em 0em;
+    display: inline-block;
+}

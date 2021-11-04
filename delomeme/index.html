@@ -9,20 +9,20 @@
             a:hover {color: #FDF399;}
             a:active {color: #FDF399;}
         </style>
-        <script src="script.js"></script>
+        <script src="lab.js"></script>
 
         <title>Church of Delomemat</title>
     </head>
-<body>
+<body onload="load();">
 <div class="all">
     <div class="nav">
-        <a id="mainlink" href="index.html"><b>Main page</b></a>
+        <a data-action="main" id="mainlink"><b>Main page</b></a>
         <br>
-        <a href="origin.html">Origins</a>
+        <a data-action="origins">Origins</a>
         <br>
-        <a href="cult.html">Cult</a>
+        <a data-action="cult">Cult</a>
         <br>
-        <a href="symbol.html">Symbolics</a>
+        <a data-action="symbol">Symbolics</a>
     </div>
 
     <div class="content"> 
@@ -33,35 +33,47 @@
     </header>
 
     <div class="main"> 
-        <script>
-            function color() {
-    let img = document.getElementById('look');
-    if (img.getAttribute("src") === "images/delomemat.png") {
-        img.src = "images/bw.png";
-    } else {
-        img.src = "images/delomemat.png";
-    }
-}
-        </script>
-        <a href="JavaScript:color();">
-            <img id="look" src="images/bw.png" alt="image of delomemat" target="_blank">
-        </a>
+        <img id="look" data-palette="white" src="images/bw.png" alt="image of delomemat" target="_blank">
     </div>
 
     <div class="pray">
         <h2>Pray:</h2>
-        <form onsubmit="return false">
+        <form>
             <input id="wish" type="text" placeholder="type your wish here...">
             <input type="submit" value="Pray!" onclick="writeWish()">
         </form>
         <div class="praylist" id="prays">
-        <p>Щоб мама жила вічно</p>
-        <p>Щоб мама жила вічно</p>
-        <p>Щоб мама жила вічно</p>
-        <p>Щоб мама жила вічно</p>
+        <ul>
+            <li data-author=" by test">Щоб мама жила вічно</li>
+            <li data-author=" by test">Щоб мама жила вічно</li>
+            <li data-author=" by test">Щоб мама жила вічно</li>
+            <li data-author=" by test">Щоб мама жила вічно</li>
+        </ul>
         </div>
     </div>
     </div>
 </div>
+<script>
+    document.write("TEST");
+
+    if (!sessionStorage.getItem("age")) {
+        isAdult();
+    }
+
+    function isAdult() {
+        age = prompt("How old are you?", 18);
+    
+        if (age < 18) {
+            let isResp = confirm("Confirm your full responsibility on using this application");
+            if (!isResp) {
+                alert("You are not allowed to use this application");
+                close();
+            } 
+        }
+
+        sessionStorage.setItem("age", age);
+    }
+
+</script>
 </body>
 </html>
