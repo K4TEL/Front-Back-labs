@@ -1,0 +1,60 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+div {
+    padding: 10px;
+}
+
+input[type=number] {
+    width: 20%;
+    padding: 1em;
+    margin: 1em;
+    display: inline;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 1em;
+  }
+
+ button {
+    background-color: #F3B71A;
+    border: none;
+    color: black;
+    padding: 1em;
+    font-size: 1em;
+    text-align: center;
+    display: inline;
+    margin: 5px;
+    cursor: pointer;
+    width: 20%;
+}
+
+input[type=date] {
+    width: 20%;
+    padding: 1em;
+    margin: 1em;
+    display: inline;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+::-webkit-calendar-picker-indicator { 
+      filter: invert(100%);
+      font-size: 1.5em;
+}
+
+::-webkit-inner-spin-button { 
+    display: none; 
+}
+

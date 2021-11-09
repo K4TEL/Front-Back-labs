@@ -136,8 +136,6 @@ function load() {
 	    });
     });
 
-
-
     window.onsubmit = function() {return false;}
 
     let look = document.getElementById('look');
@@ -160,9 +158,6 @@ class Navigator {
         }
         symbol() {
             location.href = "symbol.html";
-        }
-        gallery() {
-            location.href = "gallery.html";
         }
         onClick(event) {
             let action = event.target.dataset.action;

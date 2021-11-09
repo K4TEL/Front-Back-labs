@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/Lab1/css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Динамічні елементи</title>
+    </head>
+<body>
+    <div>
+        <h2>Код динамічних елементів: </h2>
+        <xmp>
+            $(function(){
+                var handle = $("#custom-handle");
+                $("#slider").slider({
+                    range: "min",
+                    min: 0,
+                    max: 100,
+                    value: 42,
+                    create: function() {
+                        handle.text($(this).slider("value"));
+                    },
+                    slide: function(event, ui) {
+                        handle.text( ui.value );
+                    }
+                });
+            });
+
+            $('#prays').accordion({
+                heightStyle: 'content',
+                header: '> .accordion-item > .accordion-header'
+            });
+
+            <div class="pray">
+                <h2>Donate:</h2>
+                <div id="slider">
+                    <div id="custom-handle" class="ui-slider-handle"></div>
+                </div>
+                <h2>Pray:</h2>
+                <form>
+                    <input id="wish" type="text" placeholder="type your wish here...">
+                    <input type="submit" value="Pray!" onclick="writeWish()">
+                </form>
+                <p id="donated"></p>
+        
+                <ul id="prays">
+                </ul>
+            </div>
+        </xmp>
+
+        <h2>Результат: </h2>
+        <iframe id="labframe" src="../../delomeme/index.html" frameBorder="0" 
+        width="100%" height="1500px"></iframe>
+    </div>
+</body>
+</html>
