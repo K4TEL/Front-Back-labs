@@ -7,34 +7,36 @@
     </head>
 <body>
     <div>
-        <h2>HTML вставки SCRIPT: </h2>
+        <h2>Код слайдеру відео: </h2>
         <xmp>
-            <script>
-                function go(loc) {
-            document.getElementById('taskframe').src = loc;
-          }
-            </script>
-        
-            <section class="content">
-        
-                <div class="buttons">
-                    <button class="butlab" onclick="go('frames/tema.html')">Тема, Мета, Місце розташування</button>
-                    <button class="butlab" onclick="go('frames/methods.html')">Способи функціонального застосування JS</button>
-                    <button class="butlab" onclick="go('frames/url.html')">Схема URL</button>
-                    <button class="butlab" onclick="go('frames/event.html')">Обробник подій</button>
-                    <button class="butlab" onclick="go('frames/entity.html')">Підстановка (entity)</button>
-                    <button class="butlab" onclick="go('frames/script.html')">Вставка тег script</button>
-                    <button class="butlab" onclick="go('frames/4arrays.html')">4. Масиви</button>
-                    <button class="butlab" onclick="go('frames/6calendar.html')">6. Календар</button>
-                    <button class="butlab" onclick="go('frames/sumup.html')">Висновки</button>
+            <div class="carouselVideo">
+                <div class="carousel__slide">
+                    <iframe width="560" height="315" 
+                    src="https://www.youtube.com/embed/b_V-VJQT6pM?controls=0" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
                 </div>
-        
-                <div class="outInfo">
-                    <iframe id="taskframe" src="about:blank" frameBorder="0" 
-                    onload="this.style.height=(this.contentWindow.document.body.scrollHeight+200)+'px';"></iframe>
+                <div class="carousel__slide">
+                    <iframe width="560" height="315" 
+                    src="https://www.youtube.com/embed/BHqY2KsghjU?controls=0" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
                 </div>
-        
-            </section>
+                <div class="carousel__slide">
+                    <iframe width="560" height="315" 
+                    src="https://www.youtube.com/embed/aBPK7-jd1ok?controls=0" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+                </div>
+              </div>
+
+              const videoCarousel = new Carousel(document.querySelector(".carouselVideo"), {
+                infinite: false,
+                Navigation: false
+              });
         </xmp>
     </div>
 </body>

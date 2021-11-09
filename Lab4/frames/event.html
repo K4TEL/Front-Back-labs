@@ -10,23 +10,46 @@
         <h2>Код обробника подій: </h2>
         <xmp>
             function writeWish() {
-                let prays = document.querySelector("#prays");
+                while (username == undefined) {
+                    firstPray();
+                }
             
-                let line = document.createElement("p");
-                line.innerHTML = document.querySelector("#wish").value;
+                let prays = document.querySelector("#prays");
+                let wish = document.querySelector("#wish");
+                let donation = document.querySelector("#custom-handle");
+            
+                let sum = Number(donation.innerHTML);
+            
+                if (!wish.value.trim().length && sum <= 0) {
+                    alert("You wished nothing, welcome to nirvana");
+                    return false;
+                }
+            
+                let now = new Date();
+            
+                fund.sum += sum;
+                fund.donats.set(now, {user: username, wish: wish.value, sum: sum});   
                 
-                prays.insertBefore(line, prays.firstChild);
+                prays.prepend(postWish(now, fund.donats.get(now)));
+                document.querySelector("#donated").innerHTML = "Donated: " + fund.sum + "$";
+                $( "#prays" ).accordion( "refresh" );
+                $( "#prays" ).accordion({active: 0});
             }
 
-            <form onsubmit="return false">
-                <input id="wish" type="text" placeholder="type your wish here...">
-                <input type="submit" value="Pray!" onclick="writeWish()">
-            </form>
-            <div class="praylist" id="prays">
-            <p>Щоб мама жила вічно</p>
-            <p>Щоб мама жила вічно</p>
-            <p>Щоб мама жила вічно</p>
-            <p>Щоб мама жила вічно</p>
+            <div class="pray">
+                <h2>Donate:</h2>
+                <div id="slider">
+                    <div id="custom-handle" class="ui-slider-handle"></div>
+                </div>
+                <h2>Pray:</h2>
+                <form>
+                    <input id="wish" type="text" placeholder="type your wish here...">
+                    <input type="submit" value="Pray!" onclick="writeWish()">
+                </form>
+                <p id="donated"></p>
+        
+                <ul id="prays">
+                </ul>
             </div>
         </xmp>
         <h2>Результат: </h2>

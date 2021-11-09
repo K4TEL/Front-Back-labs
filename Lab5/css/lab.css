@@ -42,3 +42,27 @@ div.outInfo {
     cursor: pointer;
     width: 100%;
 }
+
+.single {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.single .item {
+    height: 200px;
+    display: block;
+}
+
+.item img {
+    height: 100%;
+}
+
+.carousel .carousel__slide img {
+    width: 100%;
+}
+
+.clock {
+    display: block;
+}

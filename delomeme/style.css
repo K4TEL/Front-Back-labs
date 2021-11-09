@@ -204,29 +204,6 @@ input[type=text] {
       width: 60%;
   }
 
-.praylist span {
-      font-weight: normal;
-  }
-
-.praylist ul {
-    list-style: none;
-    text-align: center;
-}
-
-.praylist li:first-child {
-    font-weight: bold;
-}
-
-.praylist li:first-child::after {
-    content: attr(data-author);
-    font-weight: normal;
-}
-
-.praylist li:first-child::before {
-  content: "NEW ";
-  color: #FDF399;
-}
-
 .left p:first-child {
     position: relative;
     top: 1em;
@@ -235,4 +212,131 @@ input[type=text] {
 a#author {
     padding: 1em 0em 1em 0em;
     display: inline-block;
+}
+
+#custom-handle {
+	width: 4em;
+	height: 2em;
+	top: 50%;
+	margin-top: -1em;
+	text-align: center;
+	line-height: 2em;
+	outline: none;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+}
+
+#custom-handle:active {
+    background-color: #F3B71A;
+    color: black;
+}
+
+#slider {
+    background-color: black;
+    width: 90%;
+    margin: 2em;
+}
+
+#slider .ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	height: 1em;
+	display: block;
+	border: 0;
+	background: #F3B71A;
+}
+
+#prays .accordion-item {
+	border: 0;
+	margin: 0;
+    padding: 0;
+    color: white;
+}
+
+#prays .ui-accordion-header {
+	padding: 0 1em;
+    margin: 0;
+	background: black;
+	cursor: pointer;
+	outline: none;
+    border: none;
+}
+
+#prays .ui-accordion-content {
+	padding: 0 1em;
+    margin: 0;
+    background-color: black;
+    border: none;
+    color: #FDF399;
+    font-weight: normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#prays .accordion-header {
+    color: white;
+}
+
+#prays .ui-accordion-header-icon {
+    visibility: hidden;
+}
+
+#prays li:first-child .ui-accordion-header p::before {
+    content: "NEW ";
+    color: #FDF399;
+}
+
+#prays .ui-accordion-content p {
+    display: inline-block;
+    margin: 0.2em 1em;
+}
+
+#prays {
+    font-size: 1em;
+    list-style: none;
+}
+
+#prays span {
+    position: absolute;
+    right: 2em;
+    font-weight: bold;
+    color: #F3B71A;
+}
+
+#prays .accordion-header p {
+    width: 100%;
+}
+
+.ug-gallery-wrapper.ug-theme-default {
+    min-width: 310px !important;
+  }
+
+#social .fa:hover {
+    opacity: 0.8;
+}
+
+#social .fa {
+    font-size: 2.5em;
+    padding: 0.5em;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    border-width: 1px;
+    border-color: white;
+    border-style: solid;
+    display: inline-block;
+}
+
+.fa + .fa {
+    margin: 0 0 0 1em;
+}
+
+#social {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

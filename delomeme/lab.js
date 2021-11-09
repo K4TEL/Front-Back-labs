@@ -88,10 +88,14 @@ function color() {
 }
 
 var coord;
+var menu;
+
+function nav() {
+    menu = menu == undefined ? new Navigator(document.querySelector(".nav")) : menu;
+}
 
 function load() {
-    let menu = new Navigator(document.querySelector(".nav"));
-    if (location.href != "index.html") return;
+    nav();
 
     praysDecor();
 

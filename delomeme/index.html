@@ -9,7 +9,14 @@
             a:hover {color: #FDF399;}
             a:active {color: #FDF399;}
         </style>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
         <script src="script.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <title>Church of Delomemat</title>
     </head>
@@ -23,6 +30,8 @@
         <a data-action="cult">Cult</a>
         <br>
         <a data-action="symbol">Symbolics</a>
+        <br>
+        <a data-action="gallery">Gallery</a>
     </div>
 
     <div class="content"> 
@@ -34,28 +43,34 @@
 
     <div class="main"> 
         <img id="look" data-palette="white" src="images/bw.png" alt="image of delomemat" target="_blank">
+        <div id="social">        
+            <a href="https://t.me/brokenbloomer" class="fa fa-telegram" target="_blank"></a>
+            <a href="https://www.instagram.com/brokenbloomer/" class="fa fa-instagram" target="_blank"></a>
+            <a href="https://github.com/K4TEL" class="fa fa-github" target="_blank"></a>
+            <a href="https://vk.com/kate_lutsai" class="fa fa-vk" target="_blank"></a>
+        </div>
     </div>
 
     <div class="pray">
+        <h2>Donate:</h2>
+        <div id="slider">
+            <div id="custom-handle" class="ui-slider-handle"></div>
+        </div>
         <h2>Pray:</h2>
         <form>
             <input id="wish" type="text" placeholder="type your wish here...">
             <input type="submit" value="Pray!" onclick="writeWish()">
         </form>
-        <div class="praylist" id="prays">
-        <ul>
-            <li data-author=" by test">Щоб мама жила вічно</li>
-            <li data-author=" by test">Щоб мама жила вічно</li>
-            <li data-author=" by test">Щоб мама жила вічно</li>
-            <li data-author=" by test">Щоб мама жила вічно</li>
+        <p id="donated"></p>
+
+        <ul id="prays">
         </ul>
-        </div>
     </div>
+
+    
     </div>
 </div>
 <script>
-    document.write("TEST");
-
     if (!sessionStorage.getItem("age")) {
         isAdult();
     }
@@ -73,7 +88,6 @@
 
         sessionStorage.setItem("age", age);
     }
-
 </script>
 </body>
 </html>

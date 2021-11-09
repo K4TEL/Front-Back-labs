@@ -3,18 +3,45 @@
     <head>
         <link rel="stylesheet" href="/Lab1/css/frame.css"> 
         <meta name = "author" content = "Луцай">
-        <title>Підстановка (entity)</title>
+        <meta property="og:title" content="Title for your page" />
+        <meta property="og:description" content="Description for your page" />
+        <meta property="og:url" content="http://url/of/your/page" />
+        <meta property="og:image" content="https://path/to/the/main/image/for/your/page" />
+        <link rel="stylesheet" href="../css/sharetastic.css">
+        <script src="//code.jquery.com/jquery-3.0.0.min.js"></script>
+        <script src="../js/sharetastic.js"></script>
+        <title>Соц мережі</title>
     </head>
 <body>
     <div>
-        <h2>HTML код підстановки (entity): </h2>
+        <h2>Результат: </h2>
+        <div class="sharetastic sharetastic--simple" 
+        data-url="http://127.0.0.1:5500/delomeme/index.html" 
+        data-title="Delomemeat" 
+        data-description="Church of Delomemat"></div>
+
+        <h2>Код соціальних мереж: </h2>
         <xmp>
-            <div class="outInfo">
-                <iframe id="taskframe" src="about:blank" frameBorder="0" 
-                onload="this.style.height=(this.contentWindow.document.body.scrollHeight+200)+'px';"></iframe>
-            </div>
+            <meta property="og:title" content="Title for your page" />
+        <meta property="og:description" content="Description for your page" />
+        <meta property="og:url" content="http://url/of/your/page" />
+        <meta property="og:image" content="https://path/to/the/main/image/for/your/page" />
+        <link rel="stylesheet" href="../css/sharetastic.css">
+        <script src="//code.jquery.com/jquery-3.0.0.min.js"></script>
+        <script src="../js/sharetastic.js"></script>
+
+            <div class="sharetastic sharetastic--simple" 
+        data-url="http://127.0.0.1:5500/delomeme/index.html" 
+        data-title="Delomemeat" 
+        data-description="Church of Delomemat"></div>
+
+        <script>
+            $('.sharetastic').sharetastic();
+        </script>
         </xmp>
     </div>
-    </div>
+    <script>
+        $('.sharetastic').sharetastic();
+    </script>
 </body>
 </html>
