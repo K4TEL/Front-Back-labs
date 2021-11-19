@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name = "author" content = "Луцай Катерина, ІТ-91">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <style>
             a:link {color: #AEAD3A;}
             a:visited {color: #F3B71A;}
@@ -14,9 +14,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
-        <script src="script.js"></script>
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <script src="js/script.js"></script>
 
         <title>Church of Delomemat</title>
     </head>
@@ -35,7 +35,7 @@
     <div class="content"> 
 
     <header>
-        <h1>Church of Delomemat</h1>
+        <h1 class="splitchar vertical">Church of Delomemat</h1>
         <h2><b>Delomemat</b> (from Greek: <b>delo</b> - <i>Visible</i>, <b>memat</b> - <i>Desired</i>) <b>Деломем</b> – бог всех мемоделов.</h2>
     </header>
 
@@ -55,17 +55,15 @@
             <div id="custom-handle" class="ui-slider-handle"></div>
         </div>
         <h2>Pray:</h2>
-        <form>
+        <form id="pray-form">
             <input id="wish" type="text" placeholder="type your wish here...">
             <input type="submit" value="Pray!" onclick="writeWish()">
         </form>
-        <p id="donated"></p>
+        <p id="donated">Donated: $<span class="countfect"></span></p>
 
         <ul id="prays">
         </ul>
-    </div>
-
-    
+    </div>    
     </div>
 </div>
 <script>

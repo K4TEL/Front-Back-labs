@@ -50,6 +50,7 @@ h1 {
     font-size: 3em;
     font-weight: bold;
     text-align: center;
+    padding: 1em;
 }
 
 h2 {
@@ -108,6 +109,10 @@ div.main {
 
 div.pray {
     flex: 1 1 50%;
+}
+
+div.feedback {
+    flex: 1 1 100%;
 }
 
 .praylist p {
@@ -340,3 +345,34 @@ a#author {
     flex-direction: row;
     justify-content: center;
 }
+
+.feedback p {
+    margin: 0 0 0 2em;
+}
+
+input[type=email] {
+    width: 90%;
+    padding: 1em;
+    margin: 1em;
+    display: inline-block;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 2em;
+  }
+
+textarea {
+    width: 90%;
+    padding: 1em;
+    margin: 1em;
+    display: inline-block;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 2em;
+  }
+

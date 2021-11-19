@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Інформери</title>
+    </head>
+<body>
+    <div>
+        <h2>Код динамічних елементів: </h2>
+        <xmp>
+            $(function(){
+                var handle = $("#custom-handle");
+                $("#slider").slider({
+                    range: "min",
+                    min: 0,
+                    max: 100,
+                    value: 42,
+                    create: function() {
+                        handle.text($(this).slider("value"));
+                    },
+                    slide: function(event, ui) {
+                        handle.text( ui.value );
+                    }
+                });
+            });
+
+            $('#prays').accordion({
+                heightStyle: 'content',
+                header: '> .accordion-item > .accordion-header'
+            });
+
+            function count() {
+                document.querySelector(".countfect").dataset.num =  fund.sum;
+            
+                $(function(){
+                    $('.countfect').each(function(){
+                        var $this=$(this),
+                        countTo=$this.attr('data-num');
+                        delayTo=$this.attr('delay');
+                        if(!delayTo){ delayTo=5000 }
+                        $({countNum:$this.text()}).animate(
+                            {countNum:countTo},
+                            {duration:delayTo,
+                                easing:'linear',
+                                step:function(){
+                                    $this.text(
+                                        Math.floor(this.countNum));
+                                }, complete:function(){
+                                    $this.text(this.countNum);
+                                        }
+                            });
+                    });
+                });
+            }
+
+            <div class="pray">
+                <h2>Donate:</h2>
+                <div id="slider">
+                    <div id="custom-handle" class="ui-slider-handle"></div>
+                </div>
+                <h2>Pray:</h2>
+                <form id="pray-form">
+                    <input id="wish" type="text" placeholder="type your wish here...">
+                    <input type="submit" value="Pray!" onclick="writeWish()">
+                </form>
+                <p id="donated">Donated: $<span class="countfect"></span></p>
+        
+                <ul id="prays">
+                </ul>
+            </div>    
+        </xmp>
+    </div>
+</body>
+</html>

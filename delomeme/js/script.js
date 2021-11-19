@@ -38,7 +38,8 @@ function writeWish() {
     fund.donats.set(now, {user: username, wish: wish.value, sum: sum});   
     
     prays.prepend(postWish(now, fund.donats.get(now)));
-    document.querySelector("#donated").innerHTML = "Donated: " + fund.sum + "$";
+    count();
+    
     $( "#prays" ).accordion( "refresh" );
     $( "#prays" ).accordion({active: 0});
 }
@@ -51,7 +52,7 @@ let goWiki = (link) => {
 }
 
 let praysDecor = () => {
-    document.querySelector("#donated").innerHTML = "Donated: " + fund.sum + "$";
+    count();
 
     let prays = document.querySelector("#prays");
     for (const [date, donat] of fund.donats.entries()) {
@@ -115,6 +116,30 @@ function nav() {
     menu = menu == undefined ? new Navigator(document.querySelector(".nav")) : menu;
 }
 
+function count() {
+    document.querySelector(".countfect").dataset.num =  fund.sum;
+
+    $(function(){
+        $('.countfect').each(function(){
+            var $this=$(this),
+            countTo=$this.attr('data-num');
+            delayTo=$this.attr('delay');
+            if(!delayTo){ delayTo=5000 }
+            $({countNum:$this.text()}).animate(
+                {countNum:countTo},
+                {duration:delayTo,
+                    easing:'linear',
+                    step:function(){
+                        $this.text(
+                            Math.floor(this.countNum));
+                    }, complete:function(){
+                        $this.text(this.countNum);
+                            }
+                });
+        });
+    });
+}
+
 function load() {
     nav();
 
@@ -134,9 +159,11 @@ function load() {
 			    handle.text( ui.value );
 		    }
 	    });
+
     });
 
-    window.onsubmit = function() {return false;}
+    let prayForm = document.querySelector('#pray-form');
+    prayForm.onsubmit = function() {return false;}
 
     let look = document.getElementById('look');
     look.addEventListener("click", color);
