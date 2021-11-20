@@ -186,6 +186,9 @@ class Navigator {
         symbol() {
             location.href = "symbol.html";
         }
+        contact() {
+            location.href = "contact.php";
+        }
         onClick(event) {
             let action = event.target.dataset.action;
             if (action) {

@@ -49,6 +49,85 @@ input[type=date] {
     font-weight: bold;
 }
 
+#trainSchedule 
+input[type=number], 
+input[type=date], 
+input[type=text], 
+input[type=time], 
+select {
+    width: 80%;
+    padding: 0.5em;
+    margin: 0.5em;
+    display: inline-block;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 1em;
+}
+
+#trainSearch input[type=submit], input[type=text] {
+    width: 90%;
+    padding: 0.5em;
+    margin: 0.5em;
+    display: inline-block;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 1em;
+}
+
+#trainSchedule input[type=submit] {
+    width: 90%;
+    padding: 0.5em;
+    margin: 0.5em;
+    display: inline-block;
+    border: 1px solid #F3B71A;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #F3B71A;
+    font-size: 1em;
+}
+
+input[type=submit]:hover {
+    background-color: #F3B71A;
+    color: black;
+}
+
+table {
+    width: 90%;
+    border: none;
+    border-collapse: collapse;
+}
+
+caption {
+    padding: 1em;
+}
+
+th, td {
+    text-align: center;
+    padding: 1em;
+    vertical-align: middle;
+}
+
+th {
+    color: #AEAD3A;
+}
+
+div.left {
+    float: left;
+    width: 45%;
+}
+
+div.right {
+    float: right;
+    width: 45%;
+}
+
 ::-webkit-calendar-picker-indicator { 
       filter: invert(100%);
       font-size: 1.5em;

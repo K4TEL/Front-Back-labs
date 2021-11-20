@@ -3,12 +3,30 @@
     <head>
         <meta name = "author" content = "Луцай Катерина, ІТ-91">
         <link rel="stylesheet" href="css/style.css">
-        <title>Church of Delomemat</title>
+        <style>
+            a:link {color: #AEAD3A;}
+            a:visited {color: #F3B71A;}
+            a:hover {color: #FDF399;}
+            a:active {color: #FDF399;}
+        </style>
+        <script src="js/script.js"></script>
+        <title>Contact</title>
     </head>
-<body>
+<body onload="nav();">
 <div class="all">
-    
-    <div class="feedback">
+<div class="nav">
+        <a data-action="main" id="mainlink">Main page</a>
+        <br>
+        <a data-action="origins">Origins</a>
+        <br>
+        <a data-action="cult">Cult</a>
+        <br>
+        <a data-action="symbol">Symbolics</a>
+        <br>
+        <a data-action="contact">Contact</a>
+    </div>
+
+    <div class="content feedback">
 
         <h2>Feedback:</h2>
         <form method="POST" action="" id="feedback-form">

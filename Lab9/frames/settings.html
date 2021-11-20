@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="../../css/frame.css"> 
+      <meta name = "author" content = "Луцай">
+        <title>Налаштування сервера XAMPP</title>
+    </head>
+<body>
+    <div>
+        <h2>Налаштування сервера XAMPP: </h2>
+        <h2>php.ini</h2>
+        <xmp>
+          [mail function]
+          SMTP = smtp.gmail.com
+          smtp_port = 587
+          sendmail_from = lutsai.killer@gmail.com
+          sendmail_path = 'D:/Users/lutsa/Documents/Study/
+            OFOB/xampp/sendmail/sendmail.exe -t -i'
+          default_mimetype = "text/html"
+          default_charset = "UTF-8"
+          extension_dir = "C:\php-8.0.13-nts-Win32-vs16-x64\ext"
+
+extension=bz2
+extension=curl
+extension=ffi
+extension=ftp
+extension=fileinfo
+extension=gd
+extension=gettext
+extension=gmp
+extension=intl
+extension=imap
+extension=ldap
+extension=mbstring
+extension=exif      
+extension=mysqli
+extension=oci8_12c  
+extension=oci8_19 
+extension=odbc
+extension=openssl
+extension=pdo_firebird
+extension=pdo_mysql
+extension=pdo_oci
+extension=pdo_odbc
+extension=pdo_pgsql
+extension=pdo_sqlite
+extension=pgsql
+extension=shmop
+
+extension=soap
+extension=sockets
+extension=sodium
+extension=sqlite3
+extension=tidy
+extension=xsl
+        </xmp>
+        <h2>httpd-ssd.conf</h2>
+        <xmp>
+Listen 8013
+        </xmp>
+        <h2>sendmail.ini</h2>
+        <xmp>
+          [sendmail]
+          smtp_server=smtp.gmail.com
+          smtp_port=587
+          smtp_ssl=auto
+          error_logfile=error.log
+          debug_logfile=debug.log
+          auth_username=lutsai.killer@gmail.com
+          auth_password=2110lutsai.k
+          force_sender=lutsai.killer@gmail.com
+          force_recipient=lutsai.k@gmail.com
+        </xmp>
+        <h2>httpd.conf</h2>
+        <xmp>
+Listen 8012
+
+LoadModule php_module "C:/php/php8apache2_4.dll"
+AddType application/x-httpd-php .php
+
+AddDefaultCharset utf-8
+AddHandler x-httpd-php .html .htm
+
+
+<filesMatch '\.(html|htm|js|css)$'>
+  FileETag None
+  <ifModule mod_headers.c>
+     Header unset ETag
+     Header set Cache-Control "max-age=0, no-cache, 
+      no-store, must-revalidate"
+     Header set Pragma "no-cache"
+     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+  </ifModule>
+</filesMatch>
+        </xmp>
+        <h2>index.php</h2>
+        <xmp>
+          <?php
+          if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
+            $uri = 'https://';
+          } else {
+            $uri = 'http://';
+          }
+          $uri .= $_SERVER['HTTP_HOST'];
+          header('Location: '.$uri.'/labs/zvit.html');
+          exit;
+        ?>
+        </xmp>
+    </div>
+</body>
+</html>
