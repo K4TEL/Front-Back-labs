@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name = "author" content = "Луцай Катерина, ІТ-91">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <style>
             a:link {color: #AEAD3A;}
             a:visited {color: #F3B71A;}
@@ -16,7 +16,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
-        <script src="js/script.js"></script>
+        <script src="../js/script.js"></script>
 
         <title>Church of Delomemat</title>
     </head>
@@ -37,12 +37,12 @@
     <div class="content"> 
 
     <header>
-        <h1 class="splitchar vertical">Church of Delomemat</h1>
-        <h2><b>Delomemat</b> (from Greek: <b>delo</b> - <i>Visible</i>, <b>memat</b> - <i>Desired</i>) <b>Деломем</b> – бог всех мемоделов.</h2>
+        <h1 id="headTitle">Church of Delomemat</h1>
+        <h2 id="subTitle"><b>Delomemat</b> (from Greek: <b>delo</b> - <i>Visible</i>, <b>memat</b> - <i>Desired</i>) <b>Деломем</b> – бог всех мемоделов.</h2>
     </header>
 
     <div class="main"> 
-        <img id="look" data-palette="white" src="images/bw.png" alt="image of delomemat" target="_blank">
+        <img id="look" data-palette="white" src="../images/bw.png" alt="image of delomemat" target="_blank">
         <div id="social">        
             <a href="https://t.me/brokenbloomer" class="fa fa-telegram" target="_blank"></a>
             <a href="https://www.instagram.com/brokenbloomer/" class="fa fa-instagram" target="_blank"></a>

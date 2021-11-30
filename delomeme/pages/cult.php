@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta name = "author" content = "Луцай Катерина, ІТ-91">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <style>
             a:link {color: #AEAD3A;}
             a:visited {color: #F3B71A;}
             a:hover {color: #FDF399;}
             a:active {color: #FDF399;}
         </style>
-        <script src="js/script.js"></script>
+        <script src="../js/script.js"></script>
         <title>Cult and Patronages</title>
     </head>
 <body onload="nav();">
@@ -27,13 +27,13 @@
     </div>
     
         <div class="main"> 
-<h1>Cult and Patronages</h1>
+<h1 id="headTitle">Cult and Patronages</h1>
 
-<a href="images/memedad.png" target="_blank">
-<img src="images/memedad.png" alt="typical memedel" target="_blank">
+<a href="../images/memedad.png" target="_blank">
+<img src="../images/memedad.png" alt="typical memedel" target="_blank">
 </a>
 
-<div class="left">
+<div id="infoLeft" class="left">
 <p><span>Мемодел</span> – служитель Деломема, который занимается производством, воровством и распространением единиц «значимой» для культуры информации.</p>
 <p>Чаще всего встречаются в социальных сетях, где проявляются как администраторы/редакторы каналов и комментаторы записей. </p>
 <p>Деятельность мемоделов сводится к хобби, но нередко перерастает и в полноценную профессию. Так называемых СММщиков принято обоссывать при встрече за «продажность» и служение ложному капиталистическому божеству. </p>
@@ -45,7 +45,7 @@
     <p>Любой мемодел не обходится и без собственного хранилища «сохранёнок», размером и древностью которого измеряется статус в иерархии служителей Деломема. </p>
 </div>
 
-<div class="right">
+<div id="planRight" class="right">
 <h2>Daily ПЛАН</h2>
 
 <ul>

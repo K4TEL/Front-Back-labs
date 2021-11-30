@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Реалізація БД</title>
+    </head>
+<body>
+    <div>
+        <h2>Виглад MySQL Workbench: </h2>
+        <img src="../img/mysql.png" alt="" />
+        <h2>Виглад XAMPP: </h2>
+        <img src="../img/xampp.png" alt="" />
+        <h2>Виглад phpMyAdmin: </h2>
+        <img style="width:90%" src="../img/phpadmin.png" alt="" />
+        <h2>Код SQL для БД: </h2>
+        <xmp>
+            SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+CREATE TABLE `races` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `rails` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `idStation` int(10) UNSIGNED DEFAULT NULL,
+  `number` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `schedule` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `arrival` datetime DEFAULT NULL,
+  `departure` datetime DEFAULT NULL,
+  `idLocation` int(10) UNSIGNED DEFAULT NULL,
+  `idTransport` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `stations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `trains` (
+  `number` int(10) UNSIGNED NOT NULL,
+  `vagons` int(11) DEFAULT NULL,
+  `startHead` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `trainsonrace` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `idRace` int(10) UNSIGNED DEFAULT NULL,
+  `numTrain` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `races`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
+
+ALTER TABLE `rails`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`),
+  ADD KEY `station_idx` (`idStation`);
+
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`),
+  ADD KEY `location_idx` (`idLocation`),
+  ADD KEY `transport_idx` (`idTransport`);
+
+ALTER TABLE `stations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
+
+ALTER TABLE `trains`
+  ADD PRIMARY KEY (`number`),
+  ADD UNIQUE KEY `id_UNIQUE` (`number`);
+
+ALTER TABLE `trainsonrace`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`),
+  ADD KEY `race_idx` (`idRace`),
+  ADD KEY `train_idx` (`numTrain`);
+
+ALTER TABLE `races`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
+  AUTO_INCREMENT=5;
+
+ALTER TABLE `rails`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
+  AUTO_INCREMENT=9;
+
+ALTER TABLE `schedule`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
+  AUTO_INCREMENT=26;
+
+ALTER TABLE `stations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
+  AUTO_INCREMENT=4;
+
+ALTER TABLE `trains`
+  MODIFY `number` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
+  AUTO_INCREMENT=1009;
+
+ALTER TABLE `trainsonrace`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
+  AUTO_INCREMENT=11;
+
+ALTER TABLE `rails`
+  ADD CONSTRAINT `station` FOREIGN KEY (`idStation`) 
+  REFERENCES `stations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE `schedule`
+  ADD CONSTRAINT `location` FOREIGN KEY (`idLocation`) 
+  REFERENCES `rails` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `transport` FOREIGN KEY (`idTransport`) 
+  REFERENCES `trainsonrace` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE `trainsonrace`
+  ADD CONSTRAINT `race` FOREIGN KEY (`idRace`) 
+  REFERENCES `races` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `train` FOREIGN KEY (`numTrain`) 
+  REFERENCES `trains` (`number`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+        </xmp>
+    </div>
+</body>
+</html>

@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta name = "author" content = "Луцай Катерина, ІТ-91">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <style>
             a:link {color: #AEAD3A;}
             a:visited {color: #F3B71A;}
             a:hover {color: #FDF399;}
             a:active {color: #FDF399;}
         </style>
-        <script src="js/script.js"></script>
+        <script src="../js/script.js"></script>
         <title>Contact</title>
     </head>
 <body onload="nav();">
@@ -28,13 +28,13 @@
 
     <div class="content feedback">
 
-        <h2>Feedback:</h2>
+        <h2 id="headTitle">Feedback:</h2>
         <form method="POST" action="" id="feedback-form">
-            <p>You:</p>
+            <p id="youLabel">You:</p>
             <input type="text" name="name" required placeholder="anon">
-            <p>Email:</p>
+            <p id="emailLabel">Email:</p>
             <input type="email" name="email" required placeholder="emai@example.com">
-            <p>Message:</p>
+            <p id="messageLabel">Message:</p>
             <textarea name="message" required rows="5" placeholder="Hello, admin..."></textarea>
             <input type="submit" name="submit" value="Send">
         </form>

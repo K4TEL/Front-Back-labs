@@ -175,16 +175,16 @@ class Navigator {
         elem.onclick = this.onClick.bind(this); 
         }
         main() {
-            location.href = "index.html";
+            location.href = "index.php";
         }
         origins() {
-            location.href = "origin.html";
+            location.href = "origin.php";
         }
         cult() {
-            location.href = "cult.html";
+            location.href = "cult.php";
         }
         symbol() {
-            location.href = "symbol.html";
+            location.href = "symbol.php";
         }
         contact() {
             location.href = "contact.php";
