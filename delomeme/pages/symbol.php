@@ -1,3 +1,12 @@
+<?php 
+session_start();
+include "../php/db.php";
+include "../php/lang.php";
+$conn = OpenCon();
+LangSwitch($conn);
+CloseCon($conn);
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +18,7 @@
             a:hover {color: #FDF399;}
             a:active {color: #FDF399;}
         </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="../js/script.js"></script>
         <title>Symbolics</title>
     </head>

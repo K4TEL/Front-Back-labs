@@ -1,8 +1,19 @@
+<?php 
+session_start();
+include "../php/db.php";
+include "../php/login.php";
+include "../php/lang.php";
+include "../php/wishes.php";
+$conn = OpenCon();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta name = "author" content = "Луцай Катерина, ІТ-91">
         <link rel="stylesheet" href="../css/style.css">
+        <script type="text/javascript" src="../json/texts.json"></script>
+        <script type="text/javascript" src="../json/wishes.json"></script>
         <style>
             a:link {color: #AEAD3A;}
             a:visited {color: #F3B71A;}
@@ -15,12 +26,11 @@
         <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
         <script src="../js/script.js"></script>
-
         <title>Church of Delomemat</title>
     </head>
 <body onload="load();">
+
 <div class="all">
     <div class="nav">
         <a data-action="main" id="mainlink">Main page</a>
@@ -37,8 +47,15 @@
     <div class="content"> 
 
     <header>
+        <div class="langs right">
+        <?php LangSwitch($conn); ?> 
+            <a href="index.php?lang=EN"> <img src="../images/flag_en.png"> </a>
+            <a href="index.php?lang=RU"> <img src="../images/flag_ru.png"> </a>
+            <a href="index.php?lang=UA"> <img src="../images/flag_ua.png"> </a>
+        </div>
         <h1 id="headTitle">Church of Delomemat</h1>
         <h2 id="subTitle"><b>Delomemat</b> (from Greek: <b>delo</b> - <i>Visible</i>, <b>memat</b> - <i>Desired</i>) <b>Деломем</b> – бог всех мемоделов.</h2>
+        <?php LoginForm($conn); ?>
     </header>
 
     <div class="main"> 
@@ -57,13 +74,15 @@
             <div id="custom-handle" class="ui-slider-handle"></div>
         </div>
         <h2>Pray:</h2>
-        <form id="pray-form">
-            <input id="wish" type="text" placeholder="type your wish here...">
-            <input type="submit" value="Pray!" onclick="writeWish()">
+        <form method="POST" action="" id="pray-form" >
+            <input name="wishText" id="wish" type="text" placeholder="type your wish here...">
+            <input name="wishSubmit" type="submit" value="Pray!" onclick="writeWish()">
         </form>
-        <p id="donated">Donated: $<span class="countfect"></span></p>
+        <?php Wish($conn);?>
+        <p id="donated">Donated: $<span class="countfect" data-num="<?php Fund($conn); ?>"></span></p>
 
         <ul id="prays">
+            <?php SelectWishes($conn); ?>
         </ul>
     </div>    
     </div>
@@ -87,5 +106,8 @@
         sessionStorage.setItem("age", age);
     }
 </script>
+<?php 
+CloseCon($conn);
+?>
 </body>
 </html>

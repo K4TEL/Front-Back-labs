@@ -1,103 +1,48 @@
-var username;
 var menu;
-var fund = {
-    sum: 1337,
-    donats: new Map([
-        [new Date(2021,9,21,4,20,0), {
-            user: "test",
-            wish: "Щоб мама жила вічно!",
-            sum: 1337
-        }],
-        [new Date(2021,9,21,4,21,0), {
-            user: "test",
-            wish: "Слава Україні!",
-            sum: 0
-        }]
-    ])
+
+function lang() {
+    $.getJSON("../json/texts.json", function(texts){
+            for (let row of texts) {
+        let elem = document.getElementById(row.elementID);
+        elem.innerHTML = row.text;
+    }
+        }).fail(function(){
+            console.log("An error has occurred.");
+        });
 }
 
 function writeWish() {
-    while (username == undefined) {
-        firstPray();
-    }
-
-    let prays = document.querySelector("#prays");
     let wish = document.querySelector("#wish");
     let donation = document.querySelector("#custom-handle");
-
     let sum = Number(donation.innerHTML);
 
     if (!wish.value.trim().length && sum <= 0) {
         alert("You wished nothing, welcome to nirvana");
-        return false;
     }
-
-    let now = new Date();
-
-    fund.sum += sum;
-    fund.donats.set(now, {user: username, wish: wish.value, sum: sum});   
-    
-    prays.prepend(postWish(now, fund.donats.get(now)));
-    count();
-    
-    $( "#prays" ).accordion( "refresh" );
-    $( "#prays" ).accordion({active: 0});
+    const d = new Date();
+    d.setTime(d.getTime() + (100000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = "donation=" + sum + ";" + expires + ";path=/";
 }
-
-let firstPray = () => 
-    username = prompt("Please introduce yourself, how should we call you?", "anon");
 
 let goWiki = (link) => {
     if (confirm("Open wiki page?")) location.href = link;
 }
 
 let praysDecor = () => {
-    count();
-
-    let prays = document.querySelector("#prays");
-    for (const [date, donat] of fund.donats.entries()) {
-        prays.prepend(postWish(date, donat));
-    }
-
     $('#prays').accordion({
         heightStyle: 'content',
         header: '> .accordion-item > .accordion-header'
     });
 }
 
-function postWish(date, donat) {
-        let wish = document.createElement("li");
-        wish.className = "accordion-item";
-
-        let head = document.createElement("div");
-        head.className = "accordion-header";
-        let wishText = document.createElement("p");
-        wishText.innerHTML = donat.wish;
-        if (donat.sum > 0)
-            wishText.insertAdjacentHTML("beforeend", `<span>${donat.sum}$</span>`);
-        head.appendChild(wishText);
-        wish.appendChild(head);
-
-        let body = document.createElement("div");
-        let dateTime = document.createElement("p");
-        dateTime.innerHTML = date.toLocaleDateString() + " " + 
-            date.toLocaleTimeString().slice(0, -3);
-        let author = document.createElement("p");
-        author.innerHTML = "by " + donat.user;
-        body.appendChild(dateTime);
-        body.appendChild(author);
-        wish.appendChild(body);
-
-        return wish;
-}
-
 function color() {
     let img = document.getElementById('look');
-    if (img.getAttribute("src") === "images/delomemat.png") {
-        img.src = "images/bw.png";
+    if (img.getAttribute("src") === "../images/delomemat.png") {
+        img.src = "../images/bw.png";
         img.dataset.palette = "white";
     } else {
-        img.src = "images/delomemat.png";
+        img.src = "../images/delomemat.png";
         img.dataset.palette = "#F3B71A";
     }
 
@@ -114,11 +59,10 @@ function color() {
 
 function nav() {
     menu = menu == undefined ? new Navigator(document.querySelector(".nav")) : menu;
+    lang();
 }
 
 function count() {
-    document.querySelector(".countfect").dataset.num =  fund.sum;
-
     $(function(){
         $('.countfect').each(function(){
             var $this=$(this),
@@ -144,6 +88,7 @@ function load() {
     nav();
 
     praysDecor();
+    count();
 
     $(function(){
 	    var handle = $("#custom-handle");
@@ -161,9 +106,6 @@ function load() {
 	    });
 
     });
-
-    let prayForm = document.querySelector('#pray-form');
-    prayForm.onsubmit = function() {return false;}
 
     let look = document.getElementById('look');
     look.addEventListener("click", color);

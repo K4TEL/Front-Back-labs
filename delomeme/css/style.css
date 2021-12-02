@@ -345,7 +345,9 @@ a#author {
     flex-direction: row;
     justify-content: center;
 }
-
+#feedback-form {
+    width: 100%;
+}
 .feedback p {
     margin: 0 0 0 2em;
 }
@@ -376,3 +378,70 @@ textarea {
     font-size: 2em;
   }
 
+  div.login-form,
+  div.logout-form {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+  }
+
+  #login-form input[type=text],
+  #login-form input[type=password] {
+      flex: 1;
+      padding: 0.5em;
+      border: 1px solid #F3B71A;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: black;
+      color: #F3B71A;
+      font-size: 2em;
+      margin: 1em;
+  }
+
+  #login-form input[type=submit],
+  #logout-form input[type=submit] {
+      flex: 1;
+      background-color: #AEAD3A;
+      color: black;
+      padding: 0.5em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 2em;
+  }
+
+   #login-form input[type=submit]:hover,
+   #logout-form input[type=submit]:hover {
+        background-color: #F3B71A;
+    }
+
+div.logged {
+    flex: 2;
+    font-size: 1.5em;
+}
+
+div.langs {
+    width: fit-content;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1em;
+}
+
+div.langs a {
+    display: block;
+}
+
+div.langs a img {
+    height: 3em;
+}
+
+span.error {
+    color: rgb(199, 35, 35);
+    font-weight: bold;
+}

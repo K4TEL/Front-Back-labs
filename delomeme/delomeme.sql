@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 30 2021 г., 19:57
+-- Время создания: Дек 02 2021 г., 19:17
 -- Версия сервера: 10.4.21-MariaDB
 -- Версия PHP: 8.0.12
 
@@ -25,16 +25,24 @@ DELIMITER $$
 --
 -- Процедуры
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectPageTexts` (IN `pid` INT, IN `lid` INT)  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DonationSum` ()  begin
+	select sum(w.sum) as fund
+    from wishes w
+    where w.isDonated=1;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectPageTexts` (IN `page` VARCHAR(20), IN `lang` VARCHAR(20))  begin
 	select t.text, t.elementID 
     from texts t
-    where t.pageId=pid and t.langId=lid;
+    inner join pages p on p.title = page and t.pageId = p.id
+    inner join languages l on l.name = lang and t.langId = l.id;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectWishes` ()  begin
 	select w.date, w.text, u.login, w.sum, w.isDonated
     from wishes w 
-    inner join users u on u.id = w.userId;
+    inner join users u on u.id = w.userId
+    ORDER BY w.date DESC;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Wish` (IN `login` VARCHAR(45), IN `text` VARCHAR(500), IN `sum` INT)  begin
@@ -72,9 +80,9 @@ CREATE TABLE `languages` (
 --
 
 INSERT INTO `languages` (`id`, `name`) VALUES
-(1, 'en'),
-(2, 'ru'),
-(3, 'ua');
+(1, 'EN'),
+(2, 'RU'),
+(3, 'UA');
 
 -- --------------------------------------------------------
 
@@ -92,10 +100,10 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`) VALUES
-(1, 'main'),
-(2, 'origins'),
+(1, 'index'),
+(2, 'origin'),
 (3, 'cult'),
-(4, 'symbolics'),
+(4, 'symbol'),
 (5, 'contact');
 
 -- --------------------------------------------------------
@@ -123,7 +131,7 @@ INSERT INTO `texts` (`id`, `pageId`, `langId`, `text`, `elementID`) VALUES
 (5, 2, 2, 'Истоки Деломема', 'headTitle'),
 (6, 2, 2, '<p>Появление Деломема связано с культурным развитием наших предков, их тягой к познанию мира и желанием выразиться по этому поводу. </p>\r\n<p>Самые древние признаки его последователей, дошедшие до наших дней, — это наскальные рисунки.</p>\r\n<p>В дальнейшем способы самовыражения мемоделов видоизменялись и с ходом истории становились всё более долговечными. Как следствие, поклонение Деломему претерпело изменения, и кровавые ритуалы уступили место новым молитвенным традициям. </p>', 'infoTop'),
 (7, 2, 2, 'Существует ли бог культуры, если бог это и есть часть культуры?', 'subTitle'),
-(8, 2, 2, '<p>Деломем многое унаследовал от своих родителей. Сохранилось примерное описание его внешности и способностей:</p>\r\n<p>Красотой не уступал он <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Apollo\')\">Аполлону</a>, и сам к ней всегда стремился. Почитал искусства  и знания. Умом он был проворен и хитер, а по характеру коварен. От <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Loki\')\">Локи</a> перенял он чувство юмора и шутовские повадки. А от <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Hermes_Trismegistus\')\">Гермеса</a> досталось ему красноречие и милость к ворам. В распоряжение от одного из отцов унаследовал он гарем из Муз, которым распоряжается и по сей день. Известно, что иногда он обращается в прекрасных девушек и сам приходит к молящимся вместо Муз. На голове у Деломема всегда можно заметить венок из его любимых трав. В руках у него жезл символизирующий инструмент творения. На поясе горн, что вещает со скоростью света.</p>\r\n\r\n<p style=\"color: #FDF399! important; font-size: 3em;\">Традиционно атрибутами Деломема считаются:</p>\r\n<ul>\r\n    <li><a href=\"symbol.html#horn\">Рог</a></li>\r\n    <li><a href=\"symbol.html#wreath\">Венок</a></li>\r\n    <li><a href=\"symbol.html#wand\">Жезл</a></li>\r\n</ul>', 'info'),
+(8, 2, 2, '<p>Деломем многое унаследовал от своих родителей. Сохранилось примерное описание его внешности и способностей:</p>\r\n<p>Красотой не уступал он <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Apollo\')\">Аполлону</a>, и сам к ней всегда стремился. Почитал искусства  и знания. Умом он был проворен и хитер, а по характеру коварен. От <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Loki\')\">Локи</a> перенял он чувство юмора и шутовские повадки. А от <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Hermes_Trismegistus\')\">Гермеса</a> досталось ему красноречие и милость к ворам. В распоряжение от одного из отцов унаследовал он гарем из Муз, которым распоряжается и по сей день. Известно, что иногда он обращается в прекрасных девушек и сам приходит к молящимся вместо Муз. На голове у Деломема всегда можно заметить венок из его любимых трав. В руках у него жезл символизирующий инструмент творения. На поясе горн, что вещает со скоростью света.</p>\r\n\r\n<p style=\"color: #FDF399! important; font-size: 3em;\">Традиционно атрибутами Деломема считаются:</p>\r\n<ul>\r\n    <li><a href=\"symbol.html#horn\">Рог</a></li>\r\n    <li><a href=\"symbol.html#wreath\">Венок</a></li>\r\n    <li><a href=\"symbol.html#wand\">Жезл</a></li>\r\n</ul>', 'infoLeft'),
 (9, 2, 2, 'Источник информации:', 'infoRight'),
 (10, 4, 2, 'Атрибуты', 'headTitle'),
 (11, 4, 1, 'Epithets and Attributes', 'headTitle'),
@@ -148,11 +156,11 @@ INSERT INTO `texts` (`id`, `pageId`, `langId`, `text`, `elementID`) VALUES
 (30, 2, 1, 'Is there a god of Culture, if any god is a part of Culture?', 'subTitle'),
 (31, 2, 3, 'Чи існує бог культури, якщо бог це і є частина культури?', 'subTitle'),
 (32, 3, 3, '<p><span>Мемороб</span> – служитель Діломема, який займається виробництвом, крадіжкою та поширенням одиниць «значущою» для культури інформації.</p>\r\n<p>Найчастіше зустрічаються у соціальних мережах, де проявляються як адміністратори/редактори каналів та коментатори записів. </p>\r\n<p>Діяльність меморобів зводиться до хобі, але нерідко переростає й у повноцінну професію. Так званих СММщиків прийнято принижувати при зустрічі за «продажність» та служіння фальшивому капіталістичному божеству. </p>\r\n<h2>Інструменти</h2>\r\n<p>За завітами Діломема, чим більше оригінальних мемов виробляє його служитель, тим більше profit. Для цього прийнято використовувати будь-який графічний редактор.</p>\r\n<p>Але крадіжка та репост чужих творінь теж заохочується.</p>\r\n<p>Будь-який мемороб не обходиться і без власного сховища «збережень», розміром та давниною якого вимірюється статус в ієрархії служителів Діломема.</p>', 'infoLeft'),
-(33, 3, 1, '<h2>Daily PLAN</h2>\r\n\r\n<ul>\r\n    <li>Pray to Delomemat</li>\r\n    <li>Find channel to grab memes:</li>\r\n        <ol>\r\n            <li>Grab a meme</li>\r\n            <li>Save the channel/li>\r\n        </ol>\r\n    <li>Post:</li>\r\n        <dl>\r\n            <dt>Original content</dt>\r\n                <dd>Creativity, reviews, unique information, own memes, etc.</dd>\r\n            <dt>Shitposting</dt>\r\n                <dd>Stolen memes, yt links</dd>\r\n            <dt>Cringe</dt>\r\n                <dd>Guilty pleasures (check unsubscribes after)</dd>\r\n            </dl>\r\n    <li><i>Feed the crowd by yourself</i></li>\r\n</ul>', 'planRight'),
+(33, 3, 1, '<h2>Daily PLAN</h2>\r\n\r\n<ul>\r\n    <li>Pray to Delomemat</li>\r\n    <li>Find channel to grab memes:</li>\r\n        <ol>\r\n            <li>Grab a meme</li>\r\n            <li>Save the channel</li>\r\n        </ol>\r\n    <li>Post:</li>\r\n        <dl>\r\n            <dt>Original content</dt>\r\n                <dd>Creativity, reviews, unique information, own memes, etc.</dd>\r\n            <dt>Shitposting</dt>\r\n                <dd>Stolen memes, yt links</dd>\r\n            <dt>Cringe</dt>\r\n                <dd>Guilty pleasures (check unsubscribes after)</dd>\r\n            </dl>\r\n    <li><i>Feed the crowd by yourself</i></li>\r\n</ul>', 'planRight'),
 (34, 3, 3, '<h2>Щоденний ПЛАН</h2>\r\n<ul>\r\n     <li>Помолитися Діломему</li>\r\n     <li>Знайти канал щоб красти звідти меми:</li>\r\n         <ol>\r\n             <li>Викрасти мем</li>\r\n             <li>Зберегти канал</li>\r\n         </ol>\r\n     <li>Запостити:</li>\r\n         <dl>\r\n             <dt>Оригінальний контент</dt>\r\n                 <dd>Творчість, огляди, унікальна інформація, власні меми і т.д.</dd>\r\n             <dt>Щитпостінг</dt>\r\n                 <dd>Вкрадені меми, посилання на ютуб</dd>\r\n             <dt>Крінж</dt>\r\n                 <dd>Соромні меми (перевірити чи не відписався хтось після)</dd>\r\n             </dl>\r\n     <li><i>Нагодувати собою натовп</i></li>\r\n</ul>', 'planRight'),
 (35, 3, 1, '<p> <span> Mememaker </span> is a servitor of Delomemat who is engaged in the production, theft and distribution of units of \"significant\" for the culture information. </p>\r\n<p> Most often found on social networks, where they appear as channel administrators / editors and post commentators. </p>\r\n<p> Mememakers\' activity is reduced to a hobby, but often develops into a full-fledged profession. It is customary to shame the so-called SMMs for \"venality\" and serving a false capitalist deity. </p>\r\n<h2> Tools </h2>\r\n<p> According to Delomemat\'s precepts, the more original memes his servant produces, the more profit he gains. It is customary to use any graphics editor for this. </p>\r\n<p> However, stealing and reposting other people\'s creations is also encouraged. </p>\r\n<p> Any mememaker is not complete without his own storage of \"savings\", the size and age of which define the status in the hierarchy of Delomemat\'s servitors. </p>', 'infoLeft'),
-(36, 2, 3, '<p>Діломем багато успадкував від своїх батьків. Зберігся приблизний опис його зовнішності та здібностей:</p>\r\n<p>Красою не поступався він <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Apollo\')\">Аполлону</a>, і сам до неї завжди прагнув. Шанував мистецтва та знання. Розумом він видався кмітливий, а за характером підступний. Від <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Loki\')\">Локі</a> перейняв він почуття гумору і блазнівські звички. А від Гермеса дісталося йому красномовство і милість до крадіїв. У розпорядження від одного з батьків успадкував він гарем із Муз, яким розпоряджається й донині. Відомо, що іноді він перевтілюється у прекрасних дівчат і сам приходить до тих, хто молиться замість Муз. На голові Діломема завжди красується вінок з його улюблених трав. У руках його жезл - інструмент творців. На поясі горн, що віщає зі швидкістю світла.</p>\r\n\r\n<p style=\"color: #FDF399! important; font-size: 3em;\">Традиційно атрибутами Діломема вважаються:</p>\r\n<ul>\r\n    <li><a href=\"symbol.html#horn\">Ріг</a></li>\r\n    <li><a href=\"symbol.html#wreath\">Вінок</a></li>\r\n    <li><a href=\"symbol.html#wand\">Жезл</a></li>\r\n</ul>', 'info'),
-(37, 2, 1, '<p> Delomemat inherited a lot from his parents. An approximate description of his appearance and abilities has left: </p>\r\n<p>By beauty he wasn\'t inferior to<a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Apollo\')\"> Apollo </a>, and he himself always strove for it. Honored arts and knowledge. Mentally he was agile, but by nature he was cunning. From <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Loki\')\"> Loki </a> he adopted his sense of humor and clownish traits. And from <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Hermes_Trismegistus\')\"> Hermes </a> he got eloquence and mercy to thieves. At the disposal of one of the fathers, he inherited a harem of Muses, which he manages to this day. It is known that sometimes he turns into beautiful girls and comes to prayers himself instead. On Delomemat\'s head, you can always see a wreath of his favorite herbs. In his hands a wand is symbolizing the instrument of creation. On the belt a horn that broadcasts at the speed of light. </p>\r\n\r\n<p style = \"color: # FDF399! important; font-size: 3em;\"> Traditional Delomemat\'s attributes are: </p>\r\n<ul>\r\n    <li> <a href=\"symbol.html#horn\"> Horn </a> </li>\r\n    <li> <a href=\"symbol.html#wreath\"> Wreath </a> </li>\r\n    <li> <a href=\"symbol.html#wand\"> Wand </a> </li>\r\n</ul>', 'info'),
+(36, 2, 3, '<p>Діломем багато успадкував від своїх батьків. Зберігся приблизний опис його зовнішності та здібностей:</p>\r\n<p>Красою не поступався він <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Apollo\')\">Аполлону</a>, і сам до неї завжди прагнув. Шанував мистецтва та знання. Розумом він видався кмітливий, а за характером підступний. Від <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Loki\')\">Локі</a> перейняв він почуття гумору і блазнівські звички. А від Гермеса дісталося йому красномовство і милість до крадіїв. У розпорядження від одного з батьків успадкував він гарем із Муз, яким розпоряджається й донині. Відомо, що іноді він перевтілюється у прекрасних дівчат і сам приходить до тих, хто молиться замість Муз. На голові Діломема завжди красується вінок з його улюблених трав. У руках його жезл - інструмент творців. На поясі горн, що віщає зі швидкістю світла.</p>\r\n\r\n<p style=\"color: #FDF399! important; font-size: 3em;\">Традиційно атрибутами Діломема вважаються:</p>\r\n<ul>\r\n    <li><a href=\"symbol.html#horn\">Ріг</a></li>\r\n    <li><a href=\"symbol.html#wreath\">Вінок</a></li>\r\n    <li><a href=\"symbol.html#wand\">Жезл</a></li>\r\n</ul>', 'infoLeft'),
+(37, 2, 1, '<p> Delomemat inherited a lot from his parents. An approximate description of his appearance and abilities has left: </p>\r\n<p>By beauty he wasn\'t inferior to<a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Apollo\')\"> Apollo </a>, and he himself always strove for it. Honored arts and knowledge. Mentally he was agile, but by nature he was cunning. From <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Loki\')\"> Loki </a> he adopted his sense of humor and clownish traits. And from <a href=\"javascript:goWiki(\'https://en.wikipedia.org/wiki/Hermes_Trismegistus\')\"> Hermes </a> he got eloquence and mercy to thieves. At the disposal of one of the fathers, he inherited a harem of Muses, which he manages to this day. It is known that sometimes he turns into beautiful girls and comes to prayers himself instead. On Delomemat\'s head, you can always see a wreath of his favorite herbs. In his hands a wand is symbolizing the instrument of creation. On the belt a horn that broadcasts at the speed of light. </p>\r\n\r\n<p style = \"color: # FDF399! important; font-size: 3em;\"> Traditional Delomemat\'s attributes are: </p>\r\n<ul>\r\n    <li> <a href=\"symbol.html#horn\"> Horn </a> </li>\r\n    <li> <a href=\"symbol.html#wreath\"> Wreath </a> </li>\r\n    <li> <a href=\"symbol.html#wand\"> Wand </a> </li>\r\n</ul>', 'infoLeft'),
 (38, 2, 3, '<p>Поява Діломема пов\'язана з культурним розвитком наших предків, їх потягом до пізнання світу та бажанням висловитися з цього приводу. </p>\r\n<p>Найдавніші докази існування його послідовників, що дійшли до наших днів, — це наскельні малюнки.</p>\r\n<p>Надалі способи самовираження меморобів видозмінювалися і з ходом історії ставали все більш довговічними. Як наслідок, поклоніння Діломему зазнало змін, і криваві ритуали поступилися місцем новим молитовним традиціям. </p>', 'infoTop'),
 (39, 2, 1, '<p> The appearance of Delomemat is associated with the cultural development of our ancestors, their craving for knowledge of the world and the desire to express themselves on this matter. </p>\r\n<p> The most ancient signs of his followers that have survived to this day are rock paintings. </p>\r\n<p> Then, the ways of self-expression of mememakers have changed and became more and more durable over the course of history. As a result, the worship of Delomemat underwent a change, and bloody rituals gave way to new prayer traditions. </p>', 'infoTop'),
 (40, 4, 3, 'Традиційні атрибути Діломема', 'caption'),
@@ -205,7 +213,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `login`, `password`) VALUES
 (1, 'admin', 'admin'),
-(2, 'test', 'test');
+(2, 'test', 'test'),
+(3, 'anon', 'anon');
 
 -- --------------------------------------------------------
 
@@ -228,7 +237,8 @@ CREATE TABLE `wishes` (
 
 INSERT INTO `wishes` (`id`, `date`, `text`, `userId`, `sum`, `isDonated`) VALUES
 (2, '2021-11-30 04:20:00', 'Щоб мама жила вічно!', 2, 1337, 1),
-(7, '2021-11-30 19:21:03', 'Слава Україні!', 1, 42, 1);
+(7, '2021-11-30 19:21:03', 'Слава Україні!', 1, 42, 1),
+(9, '2021-12-02 19:35:22', 'Мир у всьому світі!', 3, 0, 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -296,13 +306,13 @@ ALTER TABLE `texts`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `wishes`
 --
 ALTER TABLE `wishes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
