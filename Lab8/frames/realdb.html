@@ -7,10 +7,6 @@
     </head>
 <body>
     <div>
-        <h2>Виглад MySQL Workbench: </h2>
-        <img src="../img/mysql.png" alt="" />
-        <h2>Виглад XAMPP: </h2>
-        <img src="../img/xampp.png" alt="" />
         <h2>Виглад phpMyAdmin: </h2>
         <img style="width:90%" src="../img/phpadmin.png" alt="" />
         <h2>Код SQL для БД: </h2>
@@ -19,110 +15,122 @@
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE TABLE `races` (
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DonationSum` ()  begin
+	select sum(w.sum) as fund
+    from wishes w
+    where w.isDonated=1;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectPageTexts` (IN `page` VARCHAR(20), IN `lang` VARCHAR(20))  begin
+	select t.text, t.elementID 
+    from texts t
+    inner join pages p on p.title = page and t.pageId = p.id
+    inner join languages l on l.name = lang and t.langId = l.id;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectWishes` ()  begin
+	select w.date, w.text, u.login, w.sum, w.isDonated
+    from wishes w 
+    inner join users u on u.id = w.userId
+    ORDER BY w.date DESC;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Wish` (IN `login` VARCHAR(45), IN `text` VARCHAR(500), IN `sum` INT)  begin
+	declare user int;
+    declare donated boolean default 0;
+    
+    select u.id
+    into user
+    from users u
+    where u.login=login;
+        
+    if sum > 0 then
+		set donated=1;
+	end if;
+    
+    insert into wishes (text, userId, sum, isDonated)
+    values (text, user, sum, donated);
+end$$
+
+DELIMITER ;
+
+CREATE TABLE `languages` (
   `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(45) DEFAULT NULL
+  `name` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `rails` (
+CREATE TABLE `pages` (
   `id` int(10) UNSIGNED NOT NULL,
-  `idStation` int(10) UNSIGNED DEFAULT NULL,
-  `number` int(11) NOT NULL
+  `title` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `schedule` (
+CREATE TABLE `texts` (
   `id` int(10) UNSIGNED NOT NULL,
-  `arrival` datetime DEFAULT NULL,
-  `departure` datetime DEFAULT NULL,
-  `idLocation` int(10) UNSIGNED DEFAULT NULL,
-  `idTransport` int(10) UNSIGNED DEFAULT NULL
+  `pageId` int(10) UNSIGNED DEFAULT NULL,
+  `langId` int(10) UNSIGNED DEFAULT NULL,
+  `text` text DEFAULT NULL,
+  `elementID` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `stations` (
+CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(45) DEFAULT NULL
+  `login` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `trains` (
-  `number` int(10) UNSIGNED NOT NULL,
-  `vagons` int(11) DEFAULT NULL,
-  `startHead` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `trainsonrace` (
+CREATE TABLE `wishes` (
   `id` int(10) UNSIGNED NOT NULL,
-  `idRace` int(10) UNSIGNED DEFAULT NULL,
-  `numTrain` int(10) UNSIGNED DEFAULT NULL
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `text` varchar(500) DEFAULT NULL,
+  `userId` int(10) UNSIGNED DEFAULT NULL,
+  `sum` int(11) DEFAULT NULL,
+  `isDonated` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `races`
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
-ALTER TABLE `rails`
+ALTER TABLE `texts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
-  ADD KEY `station_idx` (`idStation`);
+  ADD KEY `pageId_idx` (`pageId`),
+  ADD KEY `langId_idx` (`langId`);
 
-ALTER TABLE `schedule`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_UNIQUE` (`id`),
-  ADD KEY `location_idx` (`idLocation`),
-  ADD KEY `transport_idx` (`idTransport`);
+  ADD UNIQUE KEY `login_UNIQUE` (`login`);
 
-ALTER TABLE `stations`
+ALTER TABLE `wishes`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_UNIQUE` (`id`);
+  ADD KEY `userId_idx` (`userId`);
 
-ALTER TABLE `trains`
-  ADD PRIMARY KEY (`number`),
-  ADD UNIQUE KEY `id_UNIQUE` (`number`);
+ALTER TABLE `languages`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-ALTER TABLE `trainsonrace`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_UNIQUE` (`id`),
-  ADD KEY `race_idx` (`idRace`),
-  ADD KEY `train_idx` (`numTrain`);
+ALTER TABLE `pages`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
-ALTER TABLE `races`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
-  AUTO_INCREMENT=5;
+ALTER TABLE `texts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
-ALTER TABLE `rails`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
-  AUTO_INCREMENT=9;
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-ALTER TABLE `schedule`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
-  AUTO_INCREMENT=26;
+ALTER TABLE `wishes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
-ALTER TABLE `stations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
-  AUTO_INCREMENT=4;
+ALTER TABLE `texts`
+  ADD CONSTRAINT `langId` FOREIGN KEY (`langId`) REFERENCES `languages` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pageId` FOREIGN KEY (`pageId`) REFERENCES `pages` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE `trains`
-  MODIFY `number` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
-  AUTO_INCREMENT=1009;
-
-ALTER TABLE `trainsonrace`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
-  AUTO_INCREMENT=11;
-
-ALTER TABLE `rails`
-  ADD CONSTRAINT `station` FOREIGN KEY (`idStation`) 
-  REFERENCES `stations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `schedule`
-  ADD CONSTRAINT `location` FOREIGN KEY (`idLocation`) 
-  REFERENCES `rails` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `transport` FOREIGN KEY (`idTransport`) 
-  REFERENCES `trainsonrace` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `trainsonrace`
-  ADD CONSTRAINT `race` FOREIGN KEY (`idRace`) 
-  REFERENCES `races` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `train` FOREIGN KEY (`numTrain`) 
-  REFERENCES `trains` (`number`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `wishes`
+  ADD CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
         </xmp>
     </div>

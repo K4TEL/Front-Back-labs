@@ -3,72 +3,77 @@
     <head>
         <link rel="stylesheet" href="../../css/frame.css"> 
         <meta name = "author" content = "Луцай">
-        <title>Інформери</title>
+        <title>Зміна мови</title>
     </head>
 <body>
     <div>
-        <h2>Код динамічних елементів: </h2>
+        <h2>Код зміни мови: </h2>
         <xmp>
-            $(function(){
-                var handle = $("#custom-handle");
-                $("#slider").slider({
-                    range: "min",
-                    min: 0,
-                    max: 100,
-                    value: 42,
-                    create: function() {
-                        handle.text($(this).slider("value"));
-                    },
-                    slide: function(event, ui) {
-                        handle.text( ui.value );
-                    }
-                });
-            });
+            <div class="langs right">
+        <?php LangSwitch($conn); ?> 
+            <a href="index.php?lang=EN"> <img src="../images/flag_en.png"> </a>
+            <a href="index.php?lang=RU"> <img src="../images/flag_ru.png"> </a>
+            <a href="index.php?lang=UA"> <img src="../images/flag_ua.png"> </a>
+        </div>
 
-            $('#prays').accordion({
-                heightStyle: 'content',
-                header: '> .accordion-item > .accordion-header'
-            });
+               <?php 
 
-            function count() {
-                document.querySelector(".countfect").dataset.num =  fund.sum;
-            
-                $(function(){
-                    $('.countfect').each(function(){
-                        var $this=$(this),
-                        countTo=$this.attr('data-num');
-                        delayTo=$this.attr('delay');
-                        if(!delayTo){ delayTo=5000 }
-                        $({countNum:$this.text()}).animate(
-                            {countNum:countTo},
-                            {duration:delayTo,
-                                easing:'linear',
-                                step:function(){
-                                    $this.text(
-                                        Math.floor(this.countNum));
-                                }, complete:function(){
-                                    $this.text(this.countNum);
-                                        }
-                            });
-                    });
-                });
-            }
+function LangSwitch($conn) {
+    $langs = array('EN', 'RU', 'UA');
+    if(!isset($_COOKIE["lang"])) {
+        setcookie("lang", "EN", time() + (86400 * 30 * 6), "/");
+    }
 
-            <div class="pray">
-                <h2>Donate:</h2>
-                <div id="slider">
-                    <div id="custom-handle" class="ui-slider-handle"></div>
-                </div>
-                <h2>Pray:</h2>
-                <form id="pray-form">
-                    <input id="wish" type="text" placeholder="type your wish here...">
-                    <input type="submit" value="Pray!" onclick="writeWish()">
-                </form>
-                <p id="donated">Donated: $<span class="countfect"></span></p>
+    if (isset($_GET['lang']) && in_array($_GET['lang'], $langs)) {
+        setcookie("lang", $_GET['lang']);
+        $_COOKIE["lang"] = $_GET['lang'];
+    }
+
+    if (isset($_COOKIE['lang'])) {
+        $chosen = "";
+        $lang = $_COOKIE['lang'];
+        switch ($lang) {
+            case "EN":
+                $chosen = "English language is chosen";
+                break;
+            case "RU":
+                $chosen = "Выбран русский язык";
+                break;
+            case "UA":
+                $chosen = "Обрана Українська мова";
+                break;
+        }
+        echo "<p>$chosen</p>";
+
+        $url = $_SERVER['REQUEST_URI'];
+        preg_match('/(\w+)(?!.*(\w+)(\.\w+)+)/', $url, $page);
         
-                <ul id="prays">
-                </ul>
-            </div>    
+        $sql = "CALL SelectPageTexts('$page[0]','$lang')";
+        $result = $conn->query($sql);
+        $fp = fopen('../json/texts.json', 'w');
+        $emparray = array();
+        while($row = mysqli_fetch_assoc($result)) {
+            $emparray[] = $row;
+        }
+        fwrite($fp, json_encode($emparray));
+        fclose($fp);
+        while(mysqli_more_results($conn)) {
+            mysqli_next_result($conn);
+        }
+    }
+}
+?>
+
+function lang() {
+    $.getJSON("../json/texts.json", function(texts){
+            for (let row of texts) {
+        let elem = document.getElementById(row.elementID);
+        elem.innerHTML = row.text;
+    }
+        }).fail(function(){
+            console.log("An error has occurred.");
+        });
+}
         </xmp>
     </div>
 </body>

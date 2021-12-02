@@ -120,7 +120,6 @@ div.feedback {
 }
 
 div.content {
-    flex: 0 1 85%;
     display: flex;
     flex-flow: row wrap;
 }
@@ -131,7 +130,7 @@ header {
 }
 
 div.nav {
-    flex: 1 0 15%;
+    width: fit-content;
 }
 
 img {
