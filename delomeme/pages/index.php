@@ -106,8 +106,6 @@ $conn = OpenCon();
         sessionStorage.setItem("age", age);
     }
 </script>
-<?php 
-CloseCon($conn);
-?>
+<?php CloseCon($conn); ?>
 </body>
 </html>

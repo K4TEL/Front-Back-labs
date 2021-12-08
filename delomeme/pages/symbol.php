@@ -3,8 +3,6 @@ session_start();
 include "../php/db.php";
 include "../php/lang.php";
 $conn = OpenCon();
-LangSwitch($conn);
-CloseCon($conn);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +35,9 @@ CloseCon($conn);
         </div>
     
         <div class="main"> 
+            <header>
+            <?php LangSwitch($conn); ?>
+        </header>
 <h1 id="headTitle">Epithets and Attributes</h1>
 <h2 id="subTitle">If you notice man with horn and wand, wearing herbal wreath on his head, maybe it’s Delomemat himself, but maybe you should stop doing drugs.</h2>
 
@@ -105,5 +106,6 @@ CloseCon($conn);
 </table>
 </div>
 </div>
+<?php CloseCon($conn); ?>
 </body>
 </html>

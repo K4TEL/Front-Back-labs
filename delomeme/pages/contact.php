@@ -3,8 +3,6 @@ session_start();
 include "../php/db.php";
 include "../php/lang.php";
 $conn = OpenCon();
-LangSwitch($conn);
-CloseCon($conn);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +35,9 @@ CloseCon($conn);
     </div>
 
     <div class="content feedback">
+        <header>
+            <?php LangSwitch($conn); ?>
+        </header>
 
         <h2 id="headTitle">Feedback:</h2>
         <form method="POST" action="" id="feedback-form">
@@ -73,5 +74,6 @@ if (isset($_POST['submit'])) {
     
     </div>
 </div>
+<?php CloseCon($conn); ?>
 </body>
 </html>

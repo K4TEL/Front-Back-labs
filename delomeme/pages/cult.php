@@ -3,8 +3,6 @@ session_start();
 include "../php/db.php";
 include "../php/lang.php";
 $conn = OpenCon();
-LangSwitch($conn);
-CloseCon($conn);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +35,9 @@ CloseCon($conn);
     </div>
     
         <div class="main"> 
+            <header>
+            <?php LangSwitch($conn); ?>
+        </header>
 <h1 id="headTitle">Cult and Patronages</h1>
 
 <a href="../images/memedad.png" target="_blank">
@@ -79,5 +80,6 @@ CloseCon($conn);
 </div>
 </div>
 </div>
+<?php CloseCon($conn); ?>
 </body>
 </html>

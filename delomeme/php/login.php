@@ -32,6 +32,8 @@
                 return true;
             } else {
                 session_destroy();
+                session_unset();
+                $_SESSION = array();
                 return false;
             }
         } else {

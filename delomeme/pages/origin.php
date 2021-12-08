@@ -3,8 +3,6 @@ session_start();
 include "../php/db.php";
 include "../php/lang.php";
 $conn = OpenCon();
-LangSwitch($conn);
-CloseCon($conn);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +35,9 @@ CloseCon($conn);
     </div>
 
     <div class="main"> 
+        <header>
+            <?php LangSwitch($conn); ?>
+        </header>
 <h1 id="headTitle">Origins of Delomemat</h1>
 <h2 id="subTitle">Is there a god of Culture, if any god is a part of Culture?</h2>
 <div id="infoTop">
@@ -67,5 +68,6 @@ CloseCon($conn);
 </div>
 </div>
 </div>
+<?php CloseCon($conn); ?>
 </body>
 </html>
