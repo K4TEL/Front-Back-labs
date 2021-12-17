@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SlideshowClient>
+  <Slideshow>
+    <SlideshowId>1200</SlideshowId>
+    <ImagePath>../img/lyrics/lyric1.png</ImagePath>/>
+    <Description>Slide 1</Description>
+  </Slideshow>
+  <Slideshow>
+    <SlideshowId>1201</SlideshowId>
+    <ImagePath>../img/lyrics/lyric2.png</ImagePath>/>
+    <Description>Slide 2</Description>
+  </Slideshow>
+  <Slideshow>
+    <SlideshowId>1202</SlideshowId>
+    <ImagePath>../img/lyrics/lyric3.png</ImagePath>/>
+    <Description>Slide 3</Description>
+  </Slideshow>
+  <Slideshow>
+    <SlideshowId>1203</SlideshowId>
+    <ImagePath>../img/lyrics/lyric4.png</ImagePath>/>
+    <Description>Slide 4</Description>
+  </Slideshow> 
+  <Slideshow>
+    <SlideshowId>1204</SlideshowId>
+    <ImagePath>../img/lyrics/lyric5.png</ImagePath>/>
+    <Description>Slide 5</Description>
+  </Slideshow>
+  <Slideshow>
+    <SlideshowId>1205</SlideshowId>
+    <ImagePath>../img/lyrics/lyric6.png</ImagePath>/>
+    <Description>Slide 6</Description>
+  </Slideshow>
+</SlideshowClient>

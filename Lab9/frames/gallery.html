@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../css/frame.css"> 
+        <meta name = "author" content = "Луцай">
+        <title>Галерея</title>
+
+	<script type="text/javascript" src="../SlideshowClient.js"></script>
+
+	<style type="text/css">
+		.slideshowtd
+		{
+			border: 2px;
+			border-color: #fff;
+			border-style: solid;
+			padding: 5px;
+            height: 500px;
+		}
+		.slideshowcontainer
+		{
+            width: 100%;
+			height: 100%;
+		}
+        a {
+            text-decoration: none;
+            font-weight: normal;
+            font-style: normal;
+            color: #fff;
+        }
+	</style>
+</head>
+<body onload="LoadData();">
+	<form id="form1" runat="server">
+	<table class="slideshowcontainer">
+		<tr>
+			<td colspan="3" align="center">
+				<img class="slideshowtd" id="slideshowimg" src="../img/lyrics/lyric1.png" alt="Slideshow" />
+			</td>
+		</tr>
+		<tr>
+            <td align="right">
+				<a title="Delete" href="#" onclick="DeleteImage();">
+					[ - ]
+				</a>
+			</td>
+			<td align="center">
+				<span id="description"></span>
+			</td>
+            <td align="left">
+				<a title="Add New" href="#" onclick="AddNewImage();">
+					[ + ]
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td align="right">
+				<a title="Previous" href="#" onclick="ShowPreviousImage();">
+					[ << ]
+				</a>
+			</td>
+			<td align="center" style="width:15%;">
+				<a title="Play" href="#" onclick="StartSlideshow(this);">
+					[ > ]
+				</a>
+			</td>
+			<td align="left">
+				<a title="Next" href="#" onclick="ShowNextImage();">
+					[ >> ]
+				</a>
+			</td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>
