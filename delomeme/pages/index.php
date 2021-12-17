@@ -13,7 +13,6 @@ $conn = OpenCon();
         <meta name = "author" content = "Луцай Катерина, ІТ-91">
         <link rel="stylesheet" href="../css/style.css">
         <script type="text/javascript" src="../json/texts.json"></script>
-        <script type="text/javascript" src="../json/wishes.json"></script>
         <style>
             a:link {color: #AEAD3A;}
             a:visited {color: #F3B71A;}

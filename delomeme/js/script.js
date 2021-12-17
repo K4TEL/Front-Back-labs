@@ -23,6 +23,19 @@ function writeWish() {
     d.setTime(d.getTime() + (100000));
     let expires = "expires="+ d.toUTCString();
     document.cookie = "donation=" + sum + ";" + expires + ";path=/";
+
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open("POST", "../php/ajax.php", false);
+    xmlHttpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xmlHttpRequest.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    };
+    var data = new FormData();
+    data.append('text', wish.value);
+    data.append('sum', donation.innerHTML);
+    xmlHttpRequest.send(data);
 }
 
 let goWiki = (link) => {
