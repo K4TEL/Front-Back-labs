@@ -3,72 +3,63 @@
     <head>
         <link rel="stylesheet" href="../../css/frame.css"> 
         <meta name = "author" content = "Луцай">
-        <title>Інформери</title>
+        <title>Ajax запити у власному сайті</title>
     </head>
 <body>
     <div>
-        <h2>Код динамічних елементів: </h2>
+        <h2>Ajax запити у власному сайті: </h2>
         <xmp>
-            $(function(){
-                var handle = $("#custom-handle");
-                $("#slider").slider({
-                    range: "min",
-                    min: 0,
-                    max: 100,
-                    value: 42,
-                    create: function() {
-                        handle.text($(this).slider("value"));
-                    },
-                    slide: function(event, ui) {
-                        handle.text( ui.value );
-                    }
-                });
-            });
+            function writeWish() {
+    let wish = document.querySelector("#wish");
+    let donation = document.querySelector("#custom-handle");
+    let sum = Number(donation.innerHTML);
 
-            $('#prays').accordion({
-                heightStyle: 'content',
-                header: '> .accordion-item > .accordion-header'
-            });
+    if (!wish.value.trim().length && sum <= 0) {
+        alert("You wished nothing, welcome to nirvana");
+    }
 
-            function count() {
-                document.querySelector(".countfect").dataset.num =  fund.sum;
-            
-                $(function(){
-                    $('.countfect').each(function(){
-                        var $this=$(this),
-                        countTo=$this.attr('data-num');
-                        delayTo=$this.attr('delay');
-                        if(!delayTo){ delayTo=5000 }
-                        $({countNum:$this.text()}).animate(
-                            {countNum:countTo},
-                            {duration:delayTo,
-                                easing:'linear',
-                                step:function(){
-                                    $this.text(
-                                        Math.floor(this.countNum));
-                                }, complete:function(){
-                                    $this.text(this.countNum);
-                                        }
-                            });
-                    });
-                });
-            }
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open("POST", "index.php", false);
+    xmlHttpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xmlHttpRequest.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    };
+    xmlHttpRequest.send('text=' + wish.value + '&sum=' + donation.innerHTML);
+}
 
-            <div class="pray">
-                <h2>Donate:</h2>
-                <div id="slider">
-                    <div id="custom-handle" class="ui-slider-handle"></div>
-                </div>
-                <h2>Pray:</h2>
-                <form id="pray-form">
-                    <input id="wish" type="text" placeholder="type your wish here...">
-                    <input type="submit" value="Pray!" onclick="writeWish()">
-                </form>
-                <p id="donated">Donated: $<span class="countfect"></span></p>
-        
-                <ul id="prays">
-                </ul>
-            </div>    
+<?php 
+
+if(!isset($_SESSION["user"])) {
+    echo "<p><span class='error'>Login first!</span></p>";
+} else {
+
+    if(isset($_POST["text"])) {
+        $sum =  $_POST["sum"];
+        $text = $_POST["text"];
+        $user = $_SESSION["user"];
+
+        $sql = "CALL Wish('$user','$text','$sum')";
+        echo $sql;
+        $result = $conn->query($sql);
+        if ($result === FALSE) 
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        } 
+}
+
+CloseCon($conn); 
+?>
+
+        <h2>Donate:</h2>
+        <div id="slider">
+            <div id="custom-handle" class="ui-slider-handle"></div>
+        </div>
+        <h2>Pray:</h2>
+        <form id="pray-form" >
+            <input name="wishText" id="wish" type="text" placeholder="type your wish here...">
+            <input name="wishSubmit" type="submit" value="Pray!" onclick="writeWish()">
+        </form>
         </xmp>
     </div>
 </body>

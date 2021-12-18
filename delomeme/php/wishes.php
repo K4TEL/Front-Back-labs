@@ -52,10 +52,10 @@ function Wish($conn) {
         $text = $_POST["wishText"];
         $user = $_SESSION["user"];
 
-        // $sql = "CALL Wish('$user','$text','$sum')";
-        // $result = $conn->query($sql);
-        // if ($result === FALSE) 
-        //     echo "Error: " . $sql . "<br>" . $conn->error;
+        $sql = "CALL Wish('$user','$text','$sum')";
+        $result = $conn->query($sql);
+        if ($result === FALSE) 
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 }

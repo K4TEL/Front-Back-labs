@@ -73,11 +73,11 @@ $conn = OpenCon();
             <div id="custom-handle" class="ui-slider-handle"></div>
         </div>
         <h2>Pray:</h2>
-        <form method="POST" action="" id="pray-form" >
+        <form id="pray-form" >
             <input name="wishText" id="wish" type="text" placeholder="type your wish here...">
             <input name="wishSubmit" type="submit" value="Pray!" onclick="writeWish()">
         </form>
-        <?php Wish($conn);?>
+        
         <p id="donated">Donated: $<span class="countfect" data-num="<?php Fund($conn); ?>"></span></p>
 
         <ul id="prays">
@@ -105,6 +105,26 @@ $conn = OpenCon();
         sessionStorage.setItem("age", age);
     }
 </script>
-<?php CloseCon($conn); ?>
+<?php 
+
+if(!isset($_SESSION["user"])) {
+    echo "<p><span class='error'>Login first!</span></p>";
+} else {
+
+    if(isset($_POST["text"])) {
+        $sum =  $_POST["sum"];
+        $text = $_POST["text"];
+        $user = $_SESSION["user"];
+
+        $sql = "CALL Wish('$user','$text','$sum')";
+        echo $sql;
+        $result = $conn->query($sql);
+        if ($result === FALSE) 
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        } 
+}
+
+CloseCon($conn); 
+?>
 </body>
 </html>

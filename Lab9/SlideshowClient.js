@@ -123,4 +123,5 @@ function DeleteImage() {
 
 function AddNewImage() {
     document.getElementById('fileid').click();
+    LoadSlides();
 }

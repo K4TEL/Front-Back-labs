@@ -20,6 +20,4 @@
     <ImagePath>../img/lyrics/lyric4.png</ImagePath>;
     <Description>Slide 4</Description>
   </Slideshow> 
-  
-  
-<Slideshow><SlideshowId>1206</SlideshowId><ImagePath>../img/lyrics/castle.png</ImagePath><Description>castle.png</Description></Slideshow><Slideshow><SlideshowId>1207</SlideshowId><ImagePath>../img/lyrics/smokin.png</ImagePath><Description>smokin.png</Description></Slideshow><Slideshow><SlideshowId>1208</SlideshowId><ImagePath>../img/lyrics/pnk.png</ImagePath><Description>pnk.png</Description></Slideshow><Slideshow><SlideshowId>1209</SlideshowId><ImagePath>../img/lyrics/quat.png</ImagePath><Description>quat.png</Description></Slideshow></SlideshowClient>
+  <Slideshow><SlideshowId>1204</SlideshowId><ImagePath>../img/lyrics/troll.png</ImagePath><Description>troll.png</Description></Slideshow></SlideshowClient>

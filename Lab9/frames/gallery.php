@@ -114,6 +114,7 @@ if(isset($_FILES["filename"]["name"])) {
 		$slide->addChild('Description', basename( $_FILES["filename"]["name"]));
 		
 		$root->saveXML("../SlideshowClientData.xml");
+		http_response_code(200);
 	}
 }
 
