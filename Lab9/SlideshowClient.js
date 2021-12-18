@@ -4,34 +4,34 @@ var interval;
 var anchor;
 
 function LoadData() {
-    //cross browser object for XMLHttpRequest
     LoadSlides();
+    Start();
 
     document.getElementById('fileid').addEventListener('change', submitForm);
     function submitForm() {
         const form = document.getElementById('form1');
         const XHR = new XMLHttpRequest();
         const FD = new FormData( form );
-
         XHR.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
                 LoadSlides();
             }
         };
-
         XHR.open( "POST", "gallery.php", false);
         XHR.send( FD );
     }
-
-    Start();
 }
 
 function Start() {
     if (slides != null) {
-        currentSlideshowId = slides.children[0].children[0].innerHTML;
-        document.getElementById('slideshowimg').src = slides.children[0].children[1].innerHTML;
-        document.getElementById('description').innerHTML = slides.children[0].children[2].innerHTML;
+        CurrentSlide(slides.children[0]);
     }
+}
+
+function CurrentSlide(element) {
+    currentSlideshowId = element.children[0].innerHTML;
+    document.getElementById('slideshowimg').src = element.children[1].innerHTML;
+    document.getElementById('description').innerHTML = element.children[2].innerHTML;
 }
 
 function LoadSlides() {
@@ -39,25 +39,24 @@ function LoadSlides() {
     xmlHttpRequest.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
             var xml = this.responseXML;
+            console.log(xml);
             slides = xml.documentElement;
         }
     };
     xmlHttpRequest.open("GET", "../SlideshowClientData.xml", false);
+    xmlHttpRequest.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xmlHttpRequest.send();
 }
 
 
 function ShowPreviousImage() {
     if (slides != null) {
-        //Getting Previous image from data xml.
         for (var i = 0; i < slides.children.length; i++) {
             var element = slides.children[i];
             if (element.children[0] != null && element.children[0].innerHTML == currentSlideshowId) {
                 target = element.previousElementSibling;
                 if (target != null) {
-                    document.getElementById('slideshowimg').src = target.children[1].innerHTML;
-                    document.getElementById('description').innerHTML = target.children[2].innerHTML;
-                    currentSlideshowId = target.children[0].innerHTML;
+                    CurrentSlide(target);
                     break;
                 }
             }
@@ -71,7 +70,7 @@ function StartSlideshow(pointer) {
     interval = setInterval("ShowNextImage()", 1000);
     pointer.title = "Stop";
     pointer.onclick = new Function("StopSlideshow(this)");
-    pointer.innerHTML = "[ || ]";
+    pointer.innerHTML = "[ II ]";
 }
 
 function StopSlideshow(pointer) {
@@ -80,7 +79,7 @@ function StopSlideshow(pointer) {
         interval = null;
         pointer.title = "Start";
         pointer.onclick = new Function("StartSlideshow(this)"); ;
-         pointer.innerHTML = "[ > ]";
+        pointer.innerHTML = "[ > ]";
     }
 }
 
@@ -93,9 +92,7 @@ function ShowNextImage() {
             if (element.children[0] != null && element.children[0].innerHTML == currentSlideshowId) {
                 target = element.nextElementSibling;
                 if (target != null) {
-                    document.getElementById('slideshowimg').src = target.children[1].innerHTML;
-                    document.getElementById('description').innerHTML = target.children[2].innerHTML;
-                    currentSlideshowId = target.children[0].innerHTML;
+                    CurrentSlide(target);
                     flag = true;
                     break;
                 }

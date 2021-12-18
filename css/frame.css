@@ -141,3 +141,11 @@ ul li {
     color: white;
 }
 
+li.green {
+    color: #AEAD3A;
+}
+
+li.yellow {
+    color: #FDF399;
+}
+

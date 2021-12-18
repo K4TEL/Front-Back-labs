@@ -3,56 +3,53 @@
     <head>
         <link rel="stylesheet" href="../../css/frame.css"> 
         <meta name = "author" content = "Луцай">
-        <meta property="og:title" content="Title for your page" />
-        <meta property="og:description" content="Description for your page" />
-        <meta property="og:url" content="http://url/of/your/page" />
-        <meta property="og:image" content="https://path/to/the/main/image/for/your/page" />
-        <link rel="stylesheet" href="../css/sharetastic.css">
-        <script src="//code.jquery.com/jquery-3.0.0.min.js"></script>
-        <script src="../js/sharetastic.js"></script>
-        <title>Код форми зворотнього зв'язку</title>
+        <title>Порівняння функціоналу</title>
     </head>
 <body>
     <div>
-        <h2>Код форми зворотнього зв'язку: </h2>
-        <xmp>
-            <div class="feedback">
-
-                <h2>Feedback:</h2>
-                <form method="POST" action="" id="feedback-form">
-                    <p>You:</p>
-                    <input type="text" name="name" required placeholder="anon">
-                    <p>Email:</p>
-                    <input type="email" name="email" required placeholder="emai@example.com">
-                    <p>Message:</p>
-                    <textarea name="message" required rows="5" placeholder="Hello, admin..."></textarea>
-                    <input type="submit" name="submit" value="Send">
-                </form>
-        
-                <?php
-        if (isset($_POST['submit'])) {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $message = $_POST['message'];
-        
-            $from = 'From: Church of Delomemeat';
-            $to = 'lutsai.k@gmail.com';
-            $subject = 'Feedback';
-            $body = "From: $name\nE-Mail: $email\nMessage:\n$message";
-        
-            $success = mail($to, $subject, $body, $from);
-            
-            if (!$success) {
-                $errorMessage = error_get_last()['message'];
-                echo `<p>` . $errorMessage . `</p>`;
-            } else {
-                echo '<p>Your message has been sent! '. date("Y.m.d") . '</p>';
-            }
-        }
-        ?>
-            
-            </div>
-        </xmp>
+        <h2>Предметне середовище: Онлайн храм (культура)</h2>
+        <h3>Функціонал заявлений у Лабораторній роботі 1: </h3>
+        <ul>
+            <li>Перегляд сторінки:
+                <ul>
+                    <li>Головна сторінка</li>
+                    <li>Походження</li>
+                    <li>Символіка</li>
+                    <li>Культ</li>
+                </ul>
+            </li>
+            <li>Зв'язок з автором</li>
+            <li>Запис побажання</li>
+            <li>Пожертвування</li>
+            <li>Локалізація</li>
+        </ul>
+        <h3>Функціонал реалізований у Лабораторній роботі 9: </h3>
+        <ul>
+            <li class="green">Перегляд сторінки:
+                <ul>
+                    <li class="green">Головна сторінка</li>
+                    <li class="green">Походження</li>
+                    <li class="green">Символіка</li>
+                    <li class="green">Культ</li>
+                </ul>
+            </li>
+            <li class="green">Зв'язок з автором:
+                <ul>
+                    <li>Електронна пошта</li>
+                    <li>Посилання на соц мережі</li>
+                </ul>
+            </li>
+            <li class="green">Запис побажання</li>
+            <li class="yellow">Пожертвування (віртуальна валюта)</li>
+            <li class="green">Локалізація
+                <ul>
+                    <li>UA</li>
+                    <li>RU</li>
+                    <li>EN</li>
+                </ul>
+            </li>
+            <li>Авторизація користувача</li>
+        </ul>
     </div>
 </body>
 </html>
