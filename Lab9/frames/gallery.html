@@ -7,7 +7,7 @@
     </head>
 <body>
     <div>
-        <h2>Код галереї: </h2>
+        <h2>Код галереї gallery.php: </h2>
         <xmp>
             <form id="form1" runat="server" action="" method="POST" enctype="multipart/form-data">
 	<table class="slideshowcontainer">
@@ -112,6 +112,37 @@ if (isset($_GET["delId"])) {
 	$dom->Save("../SlideshowClientData.xml");
 }
 ?>
+</xmp>
+<h2>Код галереї SlideshowClientData.xml: </h2>
+        <xmp>
+
+<?xml version="1.0" encoding="utf-8"?>
+<SlideshowClient>
+  <Slideshow>
+    <SlideshowId>1200</SlideshowId>
+    <ImagePath>../img/lyrics/lyric1.png</ImagePath>;
+    <Description>Slide 1</Description>
+  </Slideshow>
+  <Slideshow>
+    <SlideshowId>1201</SlideshowId>
+    <ImagePath>../img/lyrics/lyric2.png</ImagePath>;
+    <Description>Slide 2</Description>
+  </Slideshow>
+  <Slideshow>
+    <SlideshowId>1202</SlideshowId>
+    <ImagePath>../img/lyrics/lyric3.png</ImagePath>;
+    <Description>Slide 3</Description>
+  </Slideshow>
+  <Slideshow>
+    <SlideshowId>1203</SlideshowId>
+    <ImagePath>../img/lyrics/lyric4.png</ImagePath>;
+    <Description>Slide 4</Description>
+  </Slideshow> 
+</SlideshowClient>
+
+        </xmp>
+<h2>Код галереї SlideshowClientData.js: </h2>
+        <xmp>
 
 var slides;
 var currentSlideshowId;
